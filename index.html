@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Alterna a classe de rotação
         if (bilhete.classList.contains('rotacionado')) {
             bilhete.classList.remove('rotacionado');
-            textoDentro.style.display = 'none'; // Oculta o conteúdo quando retorna
+            textoDentro.style.display = 'none'; // Oculta o conteúdo ao retornar para a frente
         } else {
             bilhete.classList.add('rotacionado');
-            textoDentro.style.display = 'block'; // Mostra o conteúdo ao rotacionar
+            textoDentro.style.display = 'block'; // Mostra o conteúdo ao rotacionar para a parte de trás
         }
     });
 });
