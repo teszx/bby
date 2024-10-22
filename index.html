@@ -7,13 +7,25 @@
 </head>
 <body>
  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const bilhete = document.querySelector('.bilhete');
+ document.addEventListener('DOMContentLoaded', function () {
+  const bilhete = document.querySelector('.bilhete');
+
+  bilhete.addEventListener('click', function () {
+    // Adiciona ou remove a classe de rotação
+    bilhete.classList.toggle('rotacionado');
     
-    bilhete.addEventListener('click', () => {
-      bilhete.classList.toggle('rotacionado'); // Alterna a rotação ao clicar
-    });
+    // Altera a visibilidade do conteúdo interno após um pequeno atraso
+    setTimeout(() => {
+      const dentro = document.querySelector('.dentro');
+      if (bilhete.classList.contains('rotacionado')) {
+        dentro.style.display = 'block'; // Mostra o conteúdo
+      } else {
+        dentro.style.display = 'none'; // Esconde o conteúdo
+      }
+    }, 400); // O tempo deve ser ajustado conforme a duração da animação de rotação
   });
+});
+
 </script>
 <div class="container">
 	<div class="bilhete">
