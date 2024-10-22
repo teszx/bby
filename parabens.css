@@ -14,13 +14,14 @@ padding:10px;
 }
 
 .bilhete {
-position: relative;
-width: 350px;
-height:450px;
-cursor: pointer;
-transform-style: preserve-3d;
-transform: perspective(2500px);
-transition: transform 0.6s ease;
+  position: relative;
+  width: 350px;
+  height: 450px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform: perspective(2500px);
+  transition: transform 0.6s ease;
+  /* Certifique-se que o preserve-3d está funcionando corretamente */
 }
 
 .bilhete:hover {
