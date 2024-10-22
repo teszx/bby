@@ -5,7 +5,7 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #FDA4BA;
-  perspective: 1500px; /* Adiciona profundidade para as transformações 3D */
+  perspective: 1000px; /* Controla a profundidade das transformações 3D */
 }
 
 .container {
@@ -19,8 +19,8 @@ body {
   height: 450px;
   position: relative;
   transform-style: preserve-3d; /* Mantém a estrutura 3D */
-  transform: rotateY(0deg); /* Posição inicial do bilhete */
   transition: transform 0.8s ease-in-out; /* Transição suave para a rotação */
+  transform: rotateY(0deg); /* Posição inicial */
 }
 
 .bilhete:hover {
@@ -43,11 +43,13 @@ body {
 .frente {
   background-color: #fff;
   transform: rotateY(0deg); /* Frente visível inicialmente */
+  z-index: 2; /* A frente deve estar acima */
 }
 
 .dentro {
   background-color: #fff;
-  transform: rotateY(180deg); /* Parte de trás do bilhete */
+  transform: rotateY(-180deg); /* Parte de trás já rotacionada */
+  z-index: 1;
 }
 
 .texto-frente {
@@ -62,6 +64,7 @@ body {
   font-size: 24px;
   color: #333;
   text-align: center;
+  backface-visibility: visible; /* Garante que o texto interno apareça */
 }
 
 .nome {
@@ -85,3 +88,4 @@ body {
     font-size: 18px;
   }
 }
+
