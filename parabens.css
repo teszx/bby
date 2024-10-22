@@ -1,25 +1,26 @@
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #FDA4BA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FDA4BA;
 }
 
-@media(max-width:414px){
-  .container{
-    padding:10px;			
-  }
+@media (max-width: 414px) {
+    .container {
+        padding: 10px;
+    }
 }
+
 
 .bilhete {
-  position: relative;
-  width: 350px;
-  height: 450px;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transform: perspective(2500px);
-  transition: 10s;
+    position: relative;
+    width: 350px;
+    height: 450px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: transform 0.4s; /* Ajuste o tempo da transição */
 }
 
 .bilhete:hover {
@@ -48,14 +49,10 @@ body {
 }
 
 .frente {
-  position: relative;
   background-color: #fff;
-  width: 350px;
-  height: 450px;
-  overflow: hidden;
-  transform-origin: left;
-  box-shadow: inset 100px 20px 100px rgba(0,0,0,.13), 30px 0 50px rgba(0,0,0,0.1);
-  transition: .4s;
+    overflow: hidden;
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.13), 30px 0 50px rgba(0, 0, 0, 0.1);
+    transform-origin: left;
 }
 
 .feliz, .amor {
@@ -212,17 +209,12 @@ body {
 }
 
 .dentro {
-    position: absolute;
     background-color: #fff;
-    width: 350px;
-    height: 450px;
-    left: 0;
-    top: 0;
+    z-index: 1; /* Mantém em cima */
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
     display: flex; /* Para centralizar o conteúdo */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
-    z-index: 1; /* Coloca em cima */
 }
 
 .texto-dentro {
@@ -246,10 +238,17 @@ p {
   margin-left: 160px;
 }
 
-.bilhete.rotacionado .dentro {
-    display: block; /* Mostra o conteúdo quando rotacionado */
-    opacity: 1; /* Torna visível */
+..bilhete.rotacionado {
+    transform: perspective(2500px) rotateY(30deg); /* Rotação ao clicar */
 }
+
+.frente, .dentro {
+    position: absolute; /* Absoluto para que fiquem sobrepostas */
+    width: 350px;
+    height: 450px;
+    backface-visibility: hidden; /* Impede que o verso apareça na frente */
+}
+
 .bilhete.rotacionado .texto-frente,
 .bilhete.rotacionado .wrap-deco,
 .bilhete.rotacionado .wrap-decoTwo,
