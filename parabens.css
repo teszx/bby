@@ -225,8 +225,9 @@ transition: .4s;
 }
 
 .texto-dentro {
-  position: relative;
+  position: absolute;
   top:-160px;
+  transform: scale(0.7);
 }
 
 .desejos {
