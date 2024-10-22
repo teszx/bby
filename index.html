@@ -7,13 +7,20 @@
 </head>
 <body>
  <script>
-	 // Seleciona o bilhete
+	// Seleciona o bilhete
 const bilhete = document.querySelector('.bilhete');
 
 // Adiciona um listener de evento para o clique
 bilhete.addEventListener('click', function() {
     // Alterna a classe 'abrir' no bilhete
     bilhete.classList.toggle('abrir');
+});
+
+// Adiciona suporte para toque
+bilhete.addEventListener('touchstart', function() {
+    bilhete.classList.toggle('abrir');
+});
+
 });
 
 </script>
