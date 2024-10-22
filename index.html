@@ -7,7 +7,7 @@
 </head>
 <body>
  <script>
- document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   const bilhete = document.querySelector('.bilhete');
   const dentro = document.querySelector('.dentro');
   
@@ -19,21 +19,19 @@
     // Adiciona ou remove a classe de rotação
     bilhete.classList.toggle('rotacionado');
 
-    // Altera a visibilidade do conteúdo interno após um pequeno atraso
     if (bilhete.classList.contains('rotacionado')) {
-      // Mostra o conteúdo
+      // Mostra o conteúdo após um pequeno atraso
       setTimeout(() => {
         dentro.style.opacity = '1'; // Torna o conteúdo visível
         dentro.style.visibility = 'visible'; // Define a visibilidade
-      }, 300); // Tempo para garantir que a rotação foi aplicada
+      }, 400); // Tempo para garantir que a rotação foi aplicada
     } else {
-      // Esconde o conteúdo
+      // Esconde o conteúdo imediatamente
       dentro.style.opacity = '0'; // Torna o conteúdo invisível
       dentro.style.visibility = 'hidden'; // Define a visibilidade
     }
   });
 });
-
 </script>
 <div class="container">
 	<div class="bilhete">
