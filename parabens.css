@@ -23,10 +23,8 @@ transition: 10s;
 }
 
 .bilhete:hover {
-    transform: none; /* Remove a rotação */
-    box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3);
-}
-
+transform: perspective(2500px) rotate(5deg);
+box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3);
 }
 
 .bilhete:hover .frente {
@@ -216,23 +214,14 @@ transition: .4s;
 }
 
 .dentro {
- position: absolute;
+  position: absolute;
   background-color: #fff;
   width: 350px;
-  height: 450px;
-  z-index: 1; /* Positive value */
-  left: 0;
-  top: 0;
+  height:450px;
+  z-index:-1;
+  left:0;
+  top:0;
   box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2);
-  backface-visibility: hidden; /* Prevents showing the back when rotated */
-  display: none; /* Start hidden */
-  opacity: 0; /* Start invisible */
-  transition: opacity 0.4s; /* Smooth transition */
-}
-
-.bilhete:hover .dentro {
-  display: block; /* Show it on hover */
-  opacity: 1; /* Fully visible */
 }
 
 .texto-dentro {
@@ -255,6 +244,6 @@ p {
 .nome {
   margin-left:160px;
 }
-
+ 
 .bilhete.rotacionado {
     transform: perspective(2500px) rotateY(90deg);
