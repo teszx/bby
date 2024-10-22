@@ -7,19 +7,20 @@
 </head>
 <body>
  <script>
-document.addEventListener('DOMContentLoaded', function () {
+ddocument.addEventListener("DOMContentLoaded", function() {
     const bilhete = document.querySelector('.bilhete');
-    const textoDentro = document.querySelector('.texto-dentro');
 
-    bilhete.addEventListener('click', function () {
-        // Alterna a classe de rotação
-        bilhete.classList.toggle('rotacionado');
-
-        // Mostra ou oculta o conteúdo de dentro dependendo da rotação
+    bilhete.addEventListener('click', function() {
+        // Verifica qual estado atual e alterna
         if (bilhete.classList.contains('rotacionado')) {
-            textoDentro.style.display = 'block'; // Exibe o conteúdo ao girar para a parte de trás
+            bilhete.classList.remove('rotacionado'); // Retorna para a frente
         } else {
-            textoDentro.style.display = 'none'; // Oculta o conteúdo ao voltar para a frente
+            // Se não está rotacionado, verifique se está na frente ou atrás
+            if (bilhete.classList.contains('dentro')) {
+                bilhete.classList.remove('dentro'); // Retorna para a frente
+            } else {
+                bilhete.classList.add('rotacionado'); // Vira para o verso
+            }
         }
     });
 });
