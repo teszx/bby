@@ -8,30 +8,27 @@
 <body>
  <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const bilhete = document.querySelector('.bilhete');
-  const dentro = document.querySelector('.dentro');
+    const bilhete = document.querySelector('.bilhete');
+    const dentro = document.querySelector('.dentro');
   
-  // Inicializa o conteúdo como oculto
-  dentro.style.opacity = '0';
-  dentro.style.visibility = 'hidden';
-
-  bilhete.addEventListener('click', function () {
-    // Adiciona ou remove a classe de rotação
-    bilhete.classList.toggle('rotacionado');
-
-    if (bilhete.classList.contains('rotacionado')) {
-      // Mostra o conteúdo após um pequeno atraso
-      setTimeout(() => {
-        dentro.style.opacity = '1'; // Torna o conteúdo visível
-        dentro.style.visibility = 'visible'; // Define a visibilidade
-      }, 400); // Tempo para garantir que a rotação foi aplicada
-    } else {
-      // Esconde o conteúdo imediatamente
-      dentro.style.opacity = '0'; // Torna o conteúdo invisível
-      dentro.style.visibility = 'hidden'; // Define a visibilidade
-    }
-  });
+    bilhete.addEventListener('click', function () {
+        // Alterna a classe para aplicar a rotação
+        bilhete.classList.toggle('rotacionado');
+        
+        if (bilhete.classList.contains('rotacionado')) {
+            dentro.style.display = 'block'; // Torna o conteúdo visível
+            setTimeout(() => {
+                dentro.style.opacity = '1'; // Aplica a opacidade
+            }, 0);
+        } else {
+            dentro.style.opacity = '0'; // Torna o conteúdo invisível
+            setTimeout(() => {
+                dentro.style.display = 'none'; // Esconde o conteúdo após a animação
+            }, 400); // Tempo igual ao da transição
+        }
+    });
 });
+
 </script>
 <div class="container">
 	<div class="bilhete">
