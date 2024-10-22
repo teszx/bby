@@ -9,20 +9,28 @@
  <script>
  document.addEventListener('DOMContentLoaded', function () {
   const bilhete = document.querySelector('.bilhete');
+  const dentro = document.querySelector('.dentro');
+  
+  // Inicializa o conteúdo como oculto
+  dentro.style.opacity = '0';
+  dentro.style.visibility = 'hidden';
 
   bilhete.addEventListener('click', function () {
     // Adiciona ou remove a classe de rotação
     bilhete.classList.toggle('rotacionado');
-    
+
     // Altera a visibilidade do conteúdo interno após um pequeno atraso
-    setTimeout(() => {
-      const dentro = document.querySelector('.dentro');
-      if (bilhete.classList.contains('rotacionado')) {
-        dentro.style.display = 'block'; // Mostra o conteúdo
-      } else {
-        dentro.style.display = 'none'; // Esconde o conteúdo
-      }
-    }, 400); // O tempo deve ser ajustado conforme a duração da animação de rotação
+    if (bilhete.classList.contains('rotacionado')) {
+      // Mostra o conteúdo
+      setTimeout(() => {
+        dentro.style.opacity = '1'; // Torna o conteúdo visível
+        dentro.style.visibility = 'visible'; // Define a visibilidade
+      }, 300); // Tempo para garantir que a rotação foi aplicada
+    } else {
+      // Esconde o conteúdo
+      dentro.style.opacity = '0'; // Torna o conteúdo invisível
+      dentro.style.visibility = 'hidden'; // Define a visibilidade
+    }
   });
 });
 
