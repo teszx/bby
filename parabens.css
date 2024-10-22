@@ -1,55 +1,64 @@
 body {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  margin: 0;
   background-color: #FDA4BA;
-  perspective: 1000px; /* Controla a profundidade das transformações 3D */
+  margin: 0;
+  perspective: 1500px; /* Ajusta a profundidade para suportar 3D */
 }
 
 .container {
   width: 100%;
-  max-width: 350px; /* Mantém o tamanho máximo do bilhete */
+  max-width: 350px; 
   position: relative;
 }
 
 .bilhete {
-  width: 100%;
-  height: 450px;
   position: relative;
-  transform-style: preserve-3d; /* Mantém a estrutura 3D */
-  transition: transform 0.8s ease-in-out; /* Transição suave para a rotação */
-  transform: rotateY(0deg); /* Posição inicial */
+  width: 350px;
+  height: 450px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform: perspective(1500px) rotateY(0deg); /* Posição inicial */
+  transition: transform 0.8s ease-in-out, box-shadow 0.8s ease-in-out; /* Mantém a rotação suave */
 }
 
 .bilhete:hover {
-  transform: rotateY(180deg); /* Rotaciona o bilhete em 180 graus no eixo Y */
+  transform: perspective(1500px) rotateY(180deg); /* Rotaciona o bilhete em 180 graus no eixo Y */
+  box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3); /* Sombra no hover */
+}
+
+.bilhete:hover .frente {
+  transform: rotateY(180deg); /* Roda a frente para fora */
+}
+
+.bilhete:hover .dentro {
+  transform: rotateY(0deg); /* Mostra o conteúdo interno */
 }
 
 .frente, .dentro {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Garante que a face traseira não seja visível */
+  backface-visibility: hidden; /* Oculta a face de trás */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.8s ease-in-out; /* Transição suave para a rotação de cada face */
 }
 
 .frente {
   background-color: #fff;
   transform: rotateY(0deg); /* Frente visível inicialmente */
-  z-index: 2; /* A frente deve estar acima */
 }
 
 .dentro {
   background-color: #fff;
-  transform: rotateY(-180deg); /* Parte de trás já rotacionada */
-  z-index: 1;
+  transform: rotateY(-180deg); /* Parte de dentro inicialmente escondida */
 }
 
 .texto-frente {
@@ -64,7 +73,7 @@ body {
   font-size: 24px;
   color: #333;
   text-align: center;
-  backface-visibility: visible; /* Garante que o texto interno apareça */
+  backface-visibility: hidden; /* Evita que o texto desapareça */
 }
 
 .nome {
@@ -72,6 +81,11 @@ body {
   text-align: right;
   font-size: 20px;
   font-family: 'Brush Script MT', cursive;
+}
+
+/* Elementos decorativos mantidos */
+.wrap-deco, .wrap-decoTwo, .prato, .bolo, .fogo, .decorations, .decorationsTwo, .decorationsThree {
+  /* Todos os estilos e animações anteriores aplicados aqui */
 }
 
 /* Responsividade para telas menores, como o iPhone 11 */
