@@ -9,22 +9,16 @@
  <script>
 document.addEventListener('DOMContentLoaded', function () {
     const bilhete = document.querySelector('.bilhete');
-    const dentro = document.querySelector('.dentro');
-  
+    const textoDentro = document.querySelector('.texto-dentro');
+
     bilhete.addEventListener('click', function () {
-        // Alterna a classe para aplicar a rotação
-        bilhete.classList.toggle('rotacionado');
-        
+        // Alterna a classe de rotação
         if (bilhete.classList.contains('rotacionado')) {
-            dentro.style.display = 'block'; // Torna o conteúdo visível
-            setTimeout(() => {
-                dentro.style.opacity = '1'; // Aplica a opacidade
-            }, 0);
+            bilhete.classList.remove('rotacionado');
+            textoDentro.style.display = 'none'; // Oculta o conteúdo quando retorna
         } else {
-            dentro.style.opacity = '0'; // Torna o conteúdo invisível
-            setTimeout(() => {
-                dentro.style.display = 'none'; // Esconde o conteúdo após a animação
-            }, 400); // Tempo igual ao da transição
+            bilhete.classList.add('rotacionado');
+            textoDentro.style.display = 'block'; // Mostra o conteúdo ao rotacionar
         }
     });
 });
