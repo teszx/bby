@@ -225,7 +225,7 @@ transition: .4s;
 }
 
 .texto-dentro {
-  position: absolute;
+  position: relative;
   top:-160px;
   transform: scale(0.7);
 }
