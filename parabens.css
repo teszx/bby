@@ -70,14 +70,16 @@ body {
   top: 200px;
 }
 
-.texto-frente {
+.wrap-deco, .wrap-decoTwo, .prato {
+  display: block;
+}
+
+.texto-frente, .texto-dentro {
   font-family: 'Brush Script MT', cursive;
   color: #333;
 }
 
 .texto-dentro {
-  font-family: 'Brush Script MT', cursive;
-  color: #333;
   position: relative;
   top: -160px;
   transform: scale(0.7);
@@ -87,15 +89,15 @@ body {
   margin-left: 160px;
 }
 
-.wrap-deco, .wrap-decoTwo, .prato {
-  display: block;
-}
-
-.bilhete.rotacionado .frente .wrap-deco, 
-.bilhete.rotacionado .frente .wrap-decoTwo, 
-.bilhete.rotacionado .frente .prato, 
+/* Quando o bilhete for rotacionado, escondemos elementos da frente */
+.bilhete.rotacionado .frente .wrap-deco,
+.bilhete.rotacionado .frente .wrap-decoTwo,
+.bilhete.rotacionado .frente .prato,
 .bilhete.rotacionado .frente .texto-frente {
-  display: none; /* Esconde os elementos da frente após a rotação */
+  display: none;
 }
 
- 
+.bilhete.rotacionado .dentro {
+  z-index: 1;
+  transform: rotateY(0deg); /* Exibe a parte de dentro */
+}
