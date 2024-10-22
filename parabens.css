@@ -212,17 +212,17 @@ body {
 }
 
 .dentro {
-  position: absolute;
-  background-color: #fff;
-  width: 350px;
-  height: 450px;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2);
-  transition: opacity 0.4s ease, visibility 0s linear 0.4s; /* Transição suave */
-  opacity: 0; /* Inicialmente invisível */
-  visibility: hidden; /* Inicialmente escondido */
+    position: absolute;
+    background-color: #fff;
+    width: 350px;
+    height: 450px;
+    left: 0;
+    top: 0;
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+    display: flex; /* Para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    z-index: 1; /* Coloca em cima */
 }
 
 .texto-dentro {
@@ -245,9 +245,11 @@ p {
 .nome {
   margin-left: 160px;
 }
-.bilhete.rotacionado {
-  transform: perspective(2500px) rotate(5deg) rotateY(-10deg); 
 
+.bilhete.rotacionado .dentro {
+    display: block; /* Mostra o conteúdo quando rotacionado */
+    opacity: 1; /* Torna visível */
+}
 .bilhete.rotacionado .texto-frente,
 .bilhete.rotacionado .wrap-deco,
 .bilhete.rotacionado .wrap-decoTwo,
