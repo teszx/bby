@@ -243,8 +243,7 @@ p {
   margin-left: 160px;
 }
 .bilhete.rotacionado {
-  transform: perspective(2500px) rotate(5deg) rotateY(-160deg); /* Mantém o efeito visual */
-}
+  transform: perspective(2500px) rotate(5deg) rotateY(-90deg); 
 
 .bilhete.rotacionado .texto-frente,
 .bilhete.rotacionado .wrap-deco,
