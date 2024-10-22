@@ -7,24 +7,14 @@
 </head>
 <body>
  <script>
-ddocument.addEventListener("DOMContentLoaded", function() {
-    const bilhete = document.querySelector('.bilhete');
+	 // Seleciona o bilhete
+const bilhete = document.querySelector('.bilhete');
 
-    bilhete.addEventListener('click', function() {
-        // Verifica qual estado atual e alterna
-        if (bilhete.classList.contains('rotacionado')) {
-            bilhete.classList.remove('rotacionado'); // Retorna para a frente
-        } else {
-            // Se não está rotacionado, verifique se está na frente ou atrás
-            if (bilhete.classList.contains('dentro')) {
-                bilhete.classList.remove('dentro'); // Retorna para a frente
-            } else {
-                bilhete.classList.add('rotacionado'); // Vira para o verso
-            }
-        }
-    });
+// Adiciona um listener de evento para o clique
+bilhete.addEventListener('click', function() {
+    // Alterna a classe 'abrir' no bilhete
+    bilhete.classList.toggle('abrir');
 });
-
 
 </script>
 <div class="container">
