@@ -23,7 +23,7 @@ transition: 10s;
 }
 
 .bilhete:hover {
-transform: perspective(2500px) rotate(10deg);
+transform: perspective(2500px) rotateY(10deg);
 box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3);
 }
 
