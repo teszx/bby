@@ -246,5 +246,5 @@ p {
 }
 
 .bilhete.rotacionado {
-    transform: perspective(2500px) rotateY(60deg);
+    transform: perspective(2500px) rotateY(180deg); /* Ajusta o ângulo de rotação */
 }
