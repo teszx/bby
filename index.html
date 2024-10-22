@@ -6,6 +6,15 @@
 <meta name="viewport" content="width=414, initial-scale=1.0">
 </head>
 <body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bilhete = document.querySelector('.bilhete');
+    
+    bilhete.addEventListener('click', () => {
+      bilhete.classList.toggle('rotacionado'); // Alterna entre mostrar frente e dentro
+    });
+  });
+</script>
 <div class="container">
 	<div class="bilhete">
 <div class="frente">
