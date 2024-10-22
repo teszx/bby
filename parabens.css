@@ -28,7 +28,7 @@ box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3)
 }
 
 .bilhete:hover .frente {
-transform: rotateY(-160deg); 
+transform: rotateY(-30deg); 
 }
 
 .bilhete:hover .texto-frente {
