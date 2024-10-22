@@ -8,7 +8,7 @@ body {
 
 @media(max-width: 414px) {
     .container {
-        padding: 10px;            
+        padding: 10px;			
     }
 }
 
@@ -18,19 +18,36 @@ body {
     height: 450px;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: 0.6s; /* Menor tempo de transição */
+    transform: perspective(2500px);
+    transition: 0.5s; /* Diminui a duração da transição */
 }
 
 .bilhete:hover {
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .15), 0 10px 100px rgba(0, 0, 0, 0.3);
 }
 
-.bilhete.abrir .frente {
-    transform: rotateY(-180deg); /* Gira a parte da frente quando o bilhete é aberto */
+.bilhete.abrir {
+    transform: perspective(2500px) rotateY(180deg); /* Efeito de abrir o bilhete */
 }
 
-.bilhete.abrir .dentro {
-    display: block; /* Exibe a parte interna quando o bilhete é aberto */
+.bilhete:hover .frente {
+    transform: rotateY(-160deg); 
+}
+
+.bilhete:hover .texto-frente {
+    display: none;
+}
+
+.bilhete:hover .wrap-deco {
+    display: none;
+}
+
+.bilhete:hover .wrap-decoTwo {
+    display: none;
+}
+
+.bilhete:hover .prato {
+    display: none;
 }
 
 .frente {
@@ -41,8 +58,19 @@ body {
     overflow: hidden;
     transform-origin: left;
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
-    transition: .4s;
-    backface-visibility: hidden; /* Impede que a parte de trás seja visível */
+    backface-visibility: hidden; /* Esconde a parte de trás */
+}
+
+.dentro {
+    position: absolute;
+    background-color: #fff;
+    width: 350px;
+    height: 450px;
+    z-index: -1; /* Coloca atrás da frente */
+    left: 0;
+    top: 0;
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+    transform: rotateY(180deg); /* Esconde a parte de trás */
 }
 
 .feliz, .amor {
@@ -198,19 +226,6 @@ body {
     left: 57px;
 }
 
-.dentro {
-    position: absolute;
-    background-color: #fff;
-    width: 350px;
-    height: 450px;
-    z-index: -1;
-    left: 0;
-    top: 0;
-    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
-    display: none; /* Inicialmente escondido */
-    backface-visibility: hidden; /* Impede que a parte de trás seja visível */
-}
-
 .texto-dentro {
     position: relative;
     top: -160px;
@@ -230,8 +245,4 @@ p {
 
 .nome {
     margin-left: 160px;
-}
-
-.bilhete.abrir {
-    transform: perspective(2500px) rotateY(180deg); /* Gira a parte da frente quando o bilhete é aberto */
 }
