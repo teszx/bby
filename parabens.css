@@ -21,12 +21,11 @@ padding:10px;
   transform-style: preserve-3d;
   transform: perspective(2500px);
   transition: transform 0.6s ease;
-  /* Certifique-se que o preserve-3d está funcionando corretamente */
 }
 
 .bilhete:hover {
-transform: perspective(2500px) rotate(2deg);
-box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3);
+  transform: perspective(2500px) rotateY(180deg);
+  box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.15), 0 10px 100px rgba(0, 0, 0, 0.3);
 }
 
 .bilhete:hover .frente {
