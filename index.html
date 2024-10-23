@@ -9,18 +9,25 @@
     document.addEventListener('DOMContentLoaded', () => {
         const bilhete = document.querySelector('.bilhete');
         const dentro = document.querySelector('.dentro');
+        const frente = document.querySelector('.frente');
+        
+        // Inicialmente, esconda a parte '.dentro'
+        dentro.style.display = 'none'; 
 
         bilhete.addEventListener('click', () => {
-            // Alterna a exibição da parte '.dentro'
+            // Verifica se a parte '.dentro' está visível
             if (dentro.style.display === 'block') {
+                // Se estiver visível, esconde a parte '.dentro' e mostra a parte '.frente'
                 dentro.style.display = 'none';
+                frente.style.display = 'block'; // Assegura que a parte da frente esteja visível
             } else {
-                dentro.style.display = 'block';
+                // Se não estiver visível, esconde a parte '.frente' e mostra a parte '.dentro'
+                frente.style.display = 'none'; // Esconde a parte da frente
+                dentro.style.display = 'block'; // Mostra a parte '.dentro'
             }
         });
     });
 </script>
-
 <div class="container">
 	<div class="bilhete">
 <div class="frente">
