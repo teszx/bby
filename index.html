@@ -5,7 +5,22 @@
 <link rel="stylesheet" type="text/css" href="parabens.css">
 <meta name="viewport" content="width=414, initial-scale=1.0">
 </head>
-<body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const bilhete = document.querySelector('.bilhete');
+        const dentro = document.querySelector('.dentro');
+
+        bilhete.addEventListener('click', () => {
+            // Alterna a exibição da parte '.dentro'
+            if (dentro.style.display === 'block') {
+                dentro.style.display = 'none';
+            } else {
+                dentro.style.display = 'block';
+            }
+        });
+    });
+</script>
+
 <div class="container">
 	<div class="bilhete">
 <div class="frente">
