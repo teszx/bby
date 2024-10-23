@@ -218,17 +218,16 @@ body {
     background-color: #fff;
     width: 350px;
     height: 450px;
-    z-index: -1;
+    z-index: 1; /* Aumentado para garantir que fique visível */
     left: 0;
     top: 0;
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
-    transform: none; /* Certifica-se de que não está escondido ou rotacionado */
+    opacity: 1; /* Garante que o elemento seja visível */
 }
 
 .texto-dentro {
     position: relative;
     top: -160px;
-    transform: scale(0.7);
 }
 
 .desejos {
@@ -260,6 +259,7 @@ p {
 
     .dentro {
         z-index: 1; /* Garante que .dentro seja visível */
-        transform: none; /* Remove qualquer transformação que possa ocultá-lo */
+        opacity: 1; /* Garante que o elemento seja visível */
     }
 }
+
