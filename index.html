@@ -7,21 +7,17 @@
 </head>
 <body>
  <script>
-	// Seleciona o bilhete
-const bilhete = document.querySelector('.bilhete');
+	// Seleciona todos os elementos com a classe 'bilhete'
+const bilhetes = document.querySelectorAll('.bilhete');
 
-// Adiciona um listener de evento para o clique
-bilhete.addEventListener('click', function() {
-    // Alterna a classe 'abrir' no bilhete
-    bilhete.classList.toggle('abrir');
+// Adiciona um evento de clique para cada bilhete
+bilhetes.forEach(bilhete => {
+    bilhete.addEventListener('click', () => {
+        // Alterna a classe 'aberto' para adicionar ou remover a rotação
+        bilhete.classList.toggle('aberto');
+    });
 });
 
-// Adiciona suporte para toque
-bilhete.addEventListener('touchstart', function() {
-    bilhete.classList.toggle('abrir');
-});
-
-});
 
 </script>
 <div class="container">
