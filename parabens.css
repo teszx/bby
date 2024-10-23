@@ -26,10 +26,6 @@ body {
         transform: none; /* Remove o hover para telas sensíveis ao toque */
     }
 
-    .bilhete.abrir {
-        transform: perspective(1500px) rotateY(180deg); /* Ajusta a rotação ao abrir */
-    }
-
     .feliz, .amor {
         font-size: 25px; /* Reduz o tamanho do texto */
     }
@@ -46,11 +42,11 @@ body {
     cursor: pointer;
     transform-style: preserve-3d;
     transform: perspective(2500px);
-    transition: transform 0.5s; /* Diminui a duração da transição */
+    transition: transform 0.5s;
 }
 
-.bilhete.abrir {
-    transform: perspective(2500px) rotateY(180deg); /* Efeito de abrir o bilhete */
+.bilhete.aberto {
+    transform: perspective(2500px) rotateY(180deg); /* Efeito de abrir o bilhete ao adicionar a classe 'aberto' */
 }
 
 .bilhete:hover {
@@ -61,13 +57,13 @@ body {
     transform: rotateY(-160deg); 
 }
 
-.bilhete:hover .texto-frente, .bilhete.abrir .texto-frente {
+.bilhete:hover .texto-frente, .bilhete.aberto .texto-frente {
     display: none;
 }
 
-.bilhete:hover .wrap-deco, .bilhete.abrir .wrap-deco,
-.bilhete:hover .wrap-decoTwo, .bilhete.abrir .wrap-decoTwo,
-.bilhete:hover .prato, .bilhete.abrir .prato {
+.bilhete:hover .wrap-deco, .bilhete.aberto .wrap-deco,
+.bilhete:hover .wrap-decoTwo, .bilhete.aberto .wrap-decoTwo,
+.bilhete:hover .prato, .bilhete.aberto .prato {
     display: none;
 }
 
@@ -269,4 +265,3 @@ p {
 .nome {
     margin-left: 160px;
 }
-
