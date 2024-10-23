@@ -10,6 +10,33 @@ body {
     .container {
         padding: 10px;			
     }
+
+    .bilhete {
+        width: 300px; /* Reduz o tamanho para caber melhor em telas menores */
+        height: 400px;
+        transform: perspective(1500px); /* Ajusta a perspectiva para telas menores */
+    }
+
+    .frente, .dentro {
+        width: 300px;
+        height: 400px;
+    }
+
+    .bilhete:hover {
+        transform: none; /* Remove o hover para telas sensíveis ao toque */
+    }
+
+    .bilhete.abrir {
+        transform: perspective(1500px) rotateY(180deg); /* Ajusta a rotação ao abrir */
+    }
+
+    .feliz, .amor {
+        font-size: 25px; /* Reduz o tamanho do texto */
+    }
+
+    .niver {
+        font-size: 30px;
+    }
 }
 
 .bilhete {
@@ -69,8 +96,9 @@ body {
     z-index: -1; /* Coloca atrás da frente */
     left: 0;
     top: 0;
-    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
+    backface-visibility: hidden; /* Corrige a visibilidade da parte de trás */
     transform: rotateY(180deg); /* Esconde a parte de trás */
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
 
 .feliz, .amor {
