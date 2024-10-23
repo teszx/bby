@@ -6,6 +6,25 @@
 <meta name="viewport" content="width=414, initial-scale=1.0">
 </head>
 <body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const bilhete = document.querySelector('.bilhete');
+        const dentro = document.querySelector('.dentro');
+
+        bilhete.addEventListener('click', () => {
+            dentro.style.display = 'block'; // Exibe a parte 'dentro' ao clicar
+            bilhete.classList.toggle('aberto'); // Alterna a classe para controle adicional, se necessário
+        });
+    });
+</script>
+
+
+  
+  
+  
+  
+  
+  </script>
 <div class="container">
 	<div class="bilhete">
 <div class="frente">
