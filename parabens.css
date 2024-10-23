@@ -46,34 +46,28 @@ body {
     cursor: pointer;
     transform-style: preserve-3d;
     transform: perspective(2500px);
-    transition: 0.5s; /* Diminui a duração da transição */
-}
-
-.bilhete:hover {
-    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .15), 0 10px 100px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s; /* Diminui a duração da transição */
 }
 
 .bilhete.abrir {
     transform: perspective(2500px) rotateY(180deg); /* Efeito de abrir o bilhete */
 }
 
+.bilhete:hover {
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .15), 0 10px 100px rgba(0, 0, 0, 0.3);
+}
+
 .bilhete:hover .frente {
     transform: rotateY(-160deg); 
 }
 
-.bilhete:hover .texto-frente {
+.bilhete:hover .texto-frente, .bilhete.abrir .texto-frente {
     display: none;
 }
 
-.bilhete:hover .wrap-deco {
-    display: none;
-}
-
-.bilhete:hover .wrap-decoTwo {
-    display: none;
-}
-
-.bilhete:hover .prato {
+.bilhete:hover .wrap-deco, .bilhete.abrir .wrap-deco,
+.bilhete:hover .wrap-decoTwo, .bilhete.abrir .wrap-decoTwo,
+.bilhete:hover .prato, .bilhete.abrir .prato {
     display: none;
 }
 
@@ -86,6 +80,7 @@ body {
     transform-origin: left;
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
     backface-visibility: hidden; /* Esconde a parte de trás */
+    transition: transform 0.5s;
 }
 
 .dentro {
@@ -93,11 +88,11 @@ body {
     background-color: #fff;
     width: 350px;
     height: 450px;
-    z-index: -1; /* Coloca atrás da frente */
+    z-index: 1; /* Traz para frente */
     left: 0;
     top: 0;
-    backface-visibility: hidden; /* Corrige a visibilidade da parte de trás */
     transform: rotateY(180deg); /* Esconde a parte de trás */
+    backface-visibility: hidden; /* Corrige a visibilidade da parte de trás */
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
 
@@ -274,3 +269,4 @@ p {
 .nome {
     margin-left: 160px;
 }
+
