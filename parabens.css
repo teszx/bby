@@ -214,15 +214,17 @@ transition: .4s;
 }
 
 .dentro {
-  position: absolute;
-  background-color: #fff;
-  width: 350px;
-  height:450px;
-  z-index:-1;
-  left:0;
-  top:0;
-  box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2);
+position: absolute;
+    background-color: #fff;
+    width: 350px;
+    height: 450px;
+    z-index: 1; /* Alterado para um valor positivo */
+    left: 0;
+    top: 0;
+    display: none; /* Inicialmente escondido */
+    box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2);
 }
+
 
 .texto-dentro {
   position: relative;
