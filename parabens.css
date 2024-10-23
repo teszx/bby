@@ -10,6 +10,11 @@ body {
     .container {
         padding: 10px;			
     }
+
+    .dentro {
+        display: block; /* Assegura que a parte 'dentro' apareça no celular */
+        z-index: 1; /* Mantém acima da frente */
+    }
 }
 
 .bilhete {
@@ -23,30 +28,11 @@ body {
 }
 
 .bilhete:hover {
-    /* Removido o efeito de rotação */
-    transform: none;
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .15), 0 10px 100px rgba(0, 0, 0, 0.3);
 }
 
 .bilhete:hover .frente {
-    /* Removido o efeito de rotação da frente */
-    transform: none;
-}
-
-.bilhete:hover .texto-frente {
-    display: none;
-}
-
-.bilhete:hover .wrap-deco {
-    display: none;
-}
-
-.bilhete:hover .wrap-decoTwo {
-    display: none;
-}
-
-.bilhete:hover .prato {
-    display: none;
+    display: none; /* Esconde a frente no hover */
 }
 
 .frente {
@@ -57,7 +43,19 @@ body {
     overflow: hidden;
     transform-origin: left;
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .13), 30px 0 50px rgba(0, 0, 0, 0.1);
-    transition: 0.4s;
+    transition: .4s;
+}
+
+.dentro {
+    position: absolute;
+    background-color: #fff;
+    width: 350px;
+    height: 450px;
+    z-index: 1; /* Traz para frente */
+    left: 0;
+    top: 0;
+    display: none; /* Esconde a parte 'dentro' inicialmente */
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
 
 .feliz, .amor {
@@ -213,21 +211,10 @@ body {
     left: 57px;
 }
 
-.dentro {
-    position: absolute;
-    background-color: #fff;
-    width: 350px;
-    height: 450px;
-    z-index: 1; /* Aumentado para garantir que fique visível */
-    left: 0;
-    top: 0;
-    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
-    opacity: 1; /* Garante que o elemento seja visível */
-}
-
 .texto-dentro {
     position: relative;
     top: -160px;
+    transform: scale(0.7);
 }
 
 .desejos {
@@ -244,22 +231,3 @@ p {
 .nome {
     margin-left: 160px;
 }
-
-/* Ajustes para celular */
-@media(max-width: 414px) {
-    .bilhete {
-        width: 300px; /* Ajusta tamanho para telas menores */
-        height: 400px;
-    }
-
-    .frente, .dentro {
-        width: 300px;
-        height: 400px;
-    }
-
-    .dentro {
-        z-index: 1; /* Garante que .dentro seja visível */
-        opacity: 1; /* Garante que o elemento seja visível */
-    }
-}
-
