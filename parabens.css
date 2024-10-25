@@ -246,4 +246,12 @@ p {
 .nome {
   margin-left:160px;
 }
- 
+
+.dentro, .frente {
+    display: none;
+}
+
+.dentro.visivel, .frente.visivel {
+    display: block;
+}
+
