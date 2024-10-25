@@ -11,12 +11,21 @@
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
 
+    // Definimos o estado inicial
+    frente.classList.add('visivel');
+    dentro.classList.remove('visivel');
+
     bilhete.addEventListener('click', () => {
         // Alterna a exibição entre '.dentro' e '.frente'
-        dentro.classList.toggle('visivel');
-        frente.classList.toggle('visivel');
+        if (frente.classList.contains('visivel')) {
+            frente.classList.remove('visivel');
+            dentro.classList.add('visivel');
+        } else {
+            dentro.classList.remove('visivel');
+            frente.classList.add('visivel');
+        }
     });
-})
+});
 </script>
 <div class="container">
 	<div class="bilhete">
