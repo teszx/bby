@@ -251,7 +251,8 @@ p {
     display: none;
 }
 
-.dentro.visivel, .frente.visivel {
+.visivel {
     display: block;
 }
+
 
