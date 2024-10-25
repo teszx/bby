@@ -6,23 +6,23 @@
 <meta name="viewport" content="width=414, initial-scale=1.0">
 </head>
   <script>
-   document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
 
     // Definimos o estado inicial
-    frente.classList.add('visivel');
-    dentro.classList.remove('visivel');
+    frente.style.display = 'block';
+    dentro.style.display = 'none';
 
     bilhete.addEventListener('click', () => {
         // Alterna a exibição entre '.dentro' e '.frente'
-        if (frente.classList.contains('visivel')) {
-            frente.classList.remove('visivel');
-            dentro.classList.add('visivel');
+        if (frente.style.display === 'block') {
+            frente.style.display = 'none';
+            dentro.style.display = 'block';
         } else {
-            dentro.classList.remove('visivel');
-            frente.classList.add('visivel');
+            dentro.style.display = 'none';
+            frente.style.display = 'block';
         }
     });
 });
