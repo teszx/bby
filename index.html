@@ -46,8 +46,7 @@
             </div>
         </div>
     </div>
-
-    <script>
+ <script>
     document.addEventListener('DOMContentLoaded', () => {
         const bilhete = document.querySelector('.bilhete');
         const dentro = document.querySelector('.dentro');
@@ -80,7 +79,7 @@
                 frente.style.display = 'block';
             });
         } else {
-            bilhete.addEventListener('click', () => {
+            bilhete.addEventListener('click', (event) => {
                 if (frente.style.display === 'block') {
                     frente.style.display = 'none';
                     dentro.style.display = 'block';
@@ -98,7 +97,8 @@
         }
 
         // Ativa o som no Safari Mobile ao clicar no botão
-        playButton.addEventListener('click', () => {
+        playButton.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evita fechar o cartão ao clicar no botão
             videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
             playButton.style.display = 'none';
         });
