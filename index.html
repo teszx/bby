@@ -37,7 +37,10 @@
                 <div class="desejos">
                     <p>Meu amor,</p>
                     <p>Mesmo distantes, meu coração bate por ti a cada instante; feliz aniversário, meu amor eterno! 💖</p>
-                    <iframe width="220" src="https://www.youtube.com/embed/py8SWw2KHT4?autoplay=1&playsinline=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="video-container">
+                        <iframe id="videoFrame" width="220" src="https://www.youtube.com/embed/py8SWw2KHT4?autoplay=1&mute=1&playsinline=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <button id="playButton" style="display: none;">Clique para ativar o som</button>
+                    </div>
                     <p class="nome">Te amo, querida.</p>
                 </div>
             </div>
@@ -48,46 +51,56 @@
         const bilhete = document.querySelector('.bilhete');
         const dentro = document.querySelector('.dentro');
         const frente = document.querySelector('.frente');
-        const videoFrame = document.querySelector('iframe');
+        const videoFrame = document.getElementById('videoFrame');
+        const playButton = document.getElementById('playButton');
 
         // Estado inicial: mostra apenas .frente
         frente.style.display = 'block';
         dentro.style.display = 'none';
 
-        // Verifica se é um dispositivo PC
+        // Detecta se é Safari no iOS
+        const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
         if (window.innerWidth > 768) {
             // No PC, troca automaticamente após 2 segundos
             setTimeout(() => {
                 frente.style.display = 'none';
                 dentro.style.display = 'block';
-                videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0"); // Remove o mute para PCs
-            }, 2000); // Ajuste o tempo em milissegundos conforme desejado
+                videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+            }, 2000);
 
-            // Ao passar o mouse, abre o bilhete automaticamente
             bilhete.addEventListener('mouseenter', () => {
                 frente.style.display = 'none';
                 dentro.style.display = 'block';
             });
 
-            // Quando o mouse sai, volta para a parte da frente
             bilhete.addEventListener('mouseleave', () => {
                 dentro.style.display = 'none';
                 frente.style.display = 'block';
             });
         } else {
-            // Em dispositivos móveis, permite que o usuário clique para alternar
             bilhete.addEventListener('click', () => {
                 if (frente.style.display === 'block') {
                     frente.style.display = 'none';
                     dentro.style.display = 'block';
-                    // Ativa o som no primeiro clique para abrir o bilhete
-                    videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0"); // Remove o mute
+                    // Exibe botão para ativar som em Safari Mobile
+                    if (isSafariMobile) {
+                        playButton.style.display = 'block';
+                    } else {
+                        videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+                    }
                 } else {
                     dentro.style.display = 'none';
                     frente.style.display = 'block';
                 }
             });
         }
+
+        // Ativa o som no Safari Mobile ao clicar no botão
+        playButton.addEventListener('click', () => {
+            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+            playButton.style.display = 'none';
+        });
     });
     </script>
 </body>
