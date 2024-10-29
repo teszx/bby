@@ -6,28 +6,34 @@
 <meta name="viewport" content="width=414, initial-scale=1.0">
 </head>
   <script>
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
 
-    // Estado inicial: mostra apenas .frente
-    frente.style.display = 'block';
-    dentro.style.display = 'none';
+    // Verifica se é um dispositivo PC
+    if (window.innerWidth > 768) {
+        // Mostra o conteúdo de dentro automaticamente
+        frente.style.display = 'none';
+        dentro.style.display = 'block';
+    } else {
+        // Estado inicial para dispositivos móveis: mostra apenas .frente
+        frente.style.display = 'block';
+        dentro.style.display = 'none';
 
-    bilhete.addEventListener('click', () => {
-        // Se .frente estiver visível, oculta .frente e mostra .dentro
-        if (frente.style.display === 'block') {
-            frente.style.display = 'none';
-            dentro.style.display = 'block';
-        } 
-        // Se .dentro estiver visível, oculta .dentro e mostra .frente
-        else {
-            dentro.style.display = 'none';
-            frente.style.display = 'block';
-        }
-    });
+        bilhete.addEventListener('click', () => {
+            // Alterna entre frente e dentro ao clicar
+            if (frente.style.display === 'block') {
+                frente.style.display = 'none';
+                dentro.style.display = 'block';
+            } else {
+                dentro.style.display = 'none';
+                frente.style.display = 'block';
+            }
+        });
+    }
 });
+
 
 </script>
 <body>
