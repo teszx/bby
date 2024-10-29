@@ -17,17 +17,33 @@ document.addEventListener('DOMContentLoaded', () => {
         // No PC, mostra a frente inicialmente, depois abre automaticamente após um intervalo
         frente.style.display = 'block';
         dentro.style.display = 'none';
-        
-        // Temporizador para abrir automaticamente após um curto intervalo
-        setTimeout(() => {
+
+    // Estado inicial: mostra apenas .frente
+    frente.style.display = 'block';
+    dentro.style.display = 'none';
+
+    // Alterna entre .frente e .dentro ao clicar (para mobile)
+    bilhete.addEventListener('click', () => {
+        if (frente.style.display === 'block') {
             frente.style.display = 'none';
             dentro.style.display = 'block';
-            videoFrame.src += "&mute=0"; // Remove o mute para PCs
-        }, 2000); // Ajuste o tempo em milissegundos conforme desejado
-    } else {
-        // Em dispositivos móveis, mostra apenas .frente inicialmente
-        frente.style.display = 'block';
+        } else {
+            dentro.style.display = 'none';
+            frente.style.display = 'block';
+        }
+    });
+
+    // No hover (desktop), abre o bilhete automaticamente
+    bilhete.addEventListener('mouseenter', () => {
+        frente.style.display = 'none';
+        dentro.style.display = 'block';
+    });
+
+    // Quando o mouse sai, volta para .frente
+    bilhete.addEventListener('mouseleave', () => {
         dentro.style.display = 'none';
+        frente.style.display = 'block';
+    });
 
         // Ao clicar, alterna entre frente e dentro e ativa o som
         bilhete.addEventListener('click', () => {
