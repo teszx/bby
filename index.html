@@ -6,46 +6,39 @@
 <meta name="viewport" content="width=414, initial-scale=1.0">
 </head>
   <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
     const videoFrame = document.querySelector('iframe');
 
-    // Verifica se é um dispositivo PC
-    if (window.innerWidth > 768) {
-        // No PC, mostra a frente inicialmente, depois abre automaticamente após um intervalo
-        frente.style.display = 'block';
-        dentro.style.display = 'none';
-
     // Estado inicial: mostra apenas .frente
     frente.style.display = 'block';
     dentro.style.display = 'none';
 
-    // Alterna entre .frente e .dentro ao clicar (para mobile)
-    bilhete.addEventListener('click', () => {
-        if (frente.style.display === 'block') {
+    // Verifica se é um dispositivo PC
+    if (window.innerWidth > 768) {
+        // No PC, troca automaticamente após 2 segundos
+        setTimeout(() => {
             frente.style.display = 'none';
             dentro.style.display = 'block';
-        } else {
+            videoFrame.src += "&mute=0"; // Remove o mute para PCs
+        }, 2000); // Ajuste o tempo em milissegundos conforme desejado
+
+        // Ao passar o mouse, abre o bilhete automaticamente
+        bilhete.addEventListener('mouseenter', () => {
+            frente.style.display = 'none';
+            dentro.style.display = 'block';
+        });
+
+        // Quando o mouse sai, volta para a parte da frente
+        bilhete.addEventListener('mouseleave', () => {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-        }
-    });
-
-    // No hover (desktop), abre o bilhete automaticamente
-    bilhete.addEventListener('mouseenter', () => {
-        frente.style.display = 'none';
-        dentro.style.display = 'block';
-    });
-
-    // Quando o mouse sai, volta para .frente
-    bilhete.addEventListener('mouseleave', () => {
-        dentro.style.display = 'none';
-        frente.style.display = 'block';
-    });
-
-        // Ao clicar, alterna entre frente e dentro e ativa o som
+        });
+    } else {
+        // Em dispositivos móveis, permite que o usuário clique para alternar
         bilhete.addEventListener('click', () => {
             if (frente.style.display === 'block') {
                 frente.style.display = 'none';
