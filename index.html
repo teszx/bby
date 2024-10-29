@@ -10,22 +10,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
+    const videoFrame = document.querySelector('iframe');
 
     // Verifica se é um dispositivo PC
     if (window.innerWidth > 768) {
-        // Mostra o conteúdo de dentro automaticamente
-        frente.style.display = 'none';
-        dentro.style.display = 'block';
+        // No PC, mostra a frente inicialmente, depois abre automaticamente após um intervalo
+        frente.style.display = 'block';
+        dentro.style.display = 'none';
+        
+        // Temporizador para abrir automaticamente após um curto intervalo
+        setTimeout(() => {
+            frente.style.display = 'none';
+            dentro.style.display = 'block';
+            videoFrame.src += "&mute=0"; // Remove o mute para PCs
+        }, 2000); // Ajuste o tempo em milissegundos conforme desejado
     } else {
-        // Estado inicial para dispositivos móveis: mostra apenas .frente
+        // Em dispositivos móveis, mostra apenas .frente inicialmente
         frente.style.display = 'block';
         dentro.style.display = 'none';
 
+        // Ao clicar, alterna entre frente e dentro e ativa o som
         bilhete.addEventListener('click', () => {
-            // Alterna entre frente e dentro ao clicar
             if (frente.style.display === 'block') {
                 frente.style.display = 'none';
                 dentro.style.display = 'block';
+                // Ativa o som no primeiro clique para abrir o bilhete
+                if (!videoFrame.src.includes("&mute=0")) {
+                    videoFrame.src += "&mute=0";
+                }
             } else {
                 dentro.style.display = 'none';
                 frente.style.display = 'block';
@@ -33,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
 
 </script>
 <body>
