@@ -37,22 +37,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2000);
 
         bilhete.addEventListener("mouseenter", () => {
+            // Não inicia os balões na frente
             frente.style.display = "none";
             dentro.style.display = "block";
             startBalloons();
         });
 
         bilhete.addEventListener("mouseleave", () => {
+            // Para os balões quando o mouse sai da área
+            stopBalloons();
             dentro.style.display = "none";
             frente.style.display = "block";
-            stopBalloons();
         });
     } else {
         bilhete.addEventListener("click", (event) => {
             if (frente.style.display === "block") {
                 frente.style.display = "none";
                 dentro.style.display = "block";
-                startBalloons();
+                startBalloons(); // Inicia os balões ao entrar na parte de dentro
                 if (isSafariMobile) {
                     playButton.style.display = "block";
                 } else {
@@ -61,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 dentro.style.display = "none";
                 frente.style.display = "block";
-                stopBalloons();
+                stopBalloons(); // Para os balões ao voltar para a frente
             }
         });
     }
