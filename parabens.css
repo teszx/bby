@@ -278,23 +278,25 @@ p {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
+/* Adiciona estilo para os balões */
 .baloes-container {
-    position: relative;
-    overflow: hidden; /* Garante que os balões não saiam da área do bilhete */
-    width: 350px;
-    height: 450px;
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Centraliza os balões horizontalmente */
+    transform: translateX(-50%); /* Ajusta o centro */
+    pointer-events: none; /* Permite interações com o bilhete mesmo sobre os balões */
+    z-index: 2; /* Garante que os balões fiquem na frente do conteúdo */
 }
 
 .balao {
     position: absolute;
     bottom: -50px; /* Começa abaixo do bilhete */
-    border-radius: 50%; /* Faz com que os balões sejam ovais */
+    border-radius: 50%; /* Faz os balões serem ovais */
     background-color: #FF6F61; /* Cor dos balões */
     width: 50px; /* Largura dos balões */
     height: 70px; /* Altura dos balões */
     opacity: 0; /* Começa invisível */
-    animation: subir 4s ease-in forwards;
-    animation-play-state: paused; /* Pausa a animação inicialmente */
+    animation: subir 4s ease-in forwards; /* Animação de subida */
 }
 
 @keyframes subir {
