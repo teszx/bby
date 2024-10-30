@@ -1,75 +1,88 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const bilhete = document.querySelector(".bilhete");
-    const dentro = document.querySelector(".dentro");
-    const frente = document.querySelector(".frente");
-    const baloes = document.querySelectorAll(".baloes-container .balao");
-    const videoFrame = document.getElementById("videoFrame");
-    const playButton = document.getElementById("playButton");
+document.addEventListener('DOMContentLoaded', () => {
+    const bilhete = document.querySelector('.bilhete');
+    const dentro = document.querySelector('.dentro');
+    const frente = document.querySelector('.frente');
+    const videoFrame = document.getElementById('videoFrame');
+    const playButton = document.getElementById('playButton');
+    const baloesContainer = document.querySelector('.baloes-container');
 
-    // Estado inicial do cartão
-    frente.style.display = "block";
-    dentro.style.display = "none";
+    // Estado inicial: mostra apenas .frente
+    frente.style.display = 'block';
+    dentro.style.display = 'none';
 
-    // Verifica se o dispositivo é Safari no iOS
+    // Detecta se é Safari no iOS
     const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     function startBalloons() {
-        baloes.forEach((balao, index) => {
-            balao.style.animationDelay = `${index * 0.5}s`; // Atraso para cada balão
-            balao.style.animationPlayState = "running"; // Inicia a animação
-            balao.style.opacity = 1; // Torna o balão visível
-        });
+        setTimeout(() => { // Adiciona o atraso de 22 segundos
+            const balao = document.createElement('div');
+            balao.className = 'balão';
+            baloesContainer.appendChild(balao);
+            balao.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+
+            // Animação do balão subindo
+            balao.animate([
+                { transform: 'translateY(0)' },
+                { transform: 'translateY(-100vh)', opacity: 0 }
+            ], {
+                duration: 5000,
+                easing: 'linear',
+                fill: 'forwards'
+            });
+
+            balao.addEventListener('animationend', () => {
+                baloesContainer.removeChild(balao);
+            });
+        }, 22000); // 22 segundos de atraso
     }
 
     function stopBalloons() {
-        baloes.forEach(balao => {
-            balao.style.animationPlayState = "paused"; // Pausa a animação
-            balao.style.opacity = 0; // Torna o balão invisível
-        });
+        while (baloesContainer.firstChild) {
+            baloesContainer.removeChild(baloesContainer.firstChild);
+        }
     }
 
     if (window.innerWidth > 768) {
-        // No PC, troca automaticamente após 2 segundos
         setTimeout(() => {
-            frente.style.display = "none";
-            dentro.style.display = "block";
+            frente.style.display = 'none';
+            dentro.style.display = 'block';
             videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
         }, 2000);
 
-        bilhete.addEventListener("mouseenter", () => {
-            frente.style.display = "none";
-            dentro.style.display = "block";
+        bilhete.addEventListener('mouseenter', () => {
+            frente.style.display = 'none';
+            dentro.style.display = 'block';
             startBalloons(); // Inicia os balões
         });
 
-        bilhete.addEventListener("mouseleave", () => {
+        bilhete.addEventListener('mouseleave', () => {
+            dentro.style.display = 'none';
+            frente.style.display = 'block';
             stopBalloons(); // Para os balões
-            dentro.style.display = "none";
-            frente.style.display = "block";
         });
     } else {
-        bilhete.addEventListener("click", (event) => {
-            if (frente.style.display === "block") {
-                frente.style.display = "none";
-                dentro.style.display = "block";
-                startBalloons(); // Inicia os balões
+        bilhete.addEventListener('click', (event) => {
+            if (frente.style.display === 'block') {
+                frente.style.display = 'none';
+                dentro.style.display = 'block';
+                startBalloons(); // Inicia os balões após 22s
                 if (isSafariMobile) {
-                    playButton.style.display = "block";
+                    playButton.style.display = 'block';
                 } else {
                     videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
                 }
             } else {
-                dentro.style.display = "none";
-                frente.style.display = "block";
+                dentro.style.display = 'none';
+                frente.style.display = 'block';
                 stopBalloons(); // Para os balões
             }
         });
     }
 
     // Ativa o som no Safari Mobile ao clicar no botão
-    playButton.addEventListener("click", (event) => {
+    playButton.addEventListener('click', (event) => {
         event.stopPropagation();
         videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-        playButton.style.display = "none";
+        playButton.style.display = 'none';
     });
 });
