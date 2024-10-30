@@ -280,33 +280,16 @@ p {
 
 .baloes-container {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    z-index: 5;
+    bottom: 0; /* Começa na parte inferior do bilhete */
+    width: 100%;
+    pointer-events: none; /* Os balões não devem interferir na interação com o bilhete */
 }
 
 .balao {
-    width: 30px;
-    height: 50px;
-    background-color: #FFD700;
-    border-radius: 50% 50% 0 0;
-    position: relative;
-    animation: subir 3s linear infinite;
-    animation-play-state: paused; /* Inicialmente pausado */
-}
-
-.balao::after {
-    content: "";
-    width: 1px;
-    height: 60px;
-    background-color: #333;
+    font-size: 40px; /* Tamanho do balão */
     position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    animation: subir 5s linear forwards;
+    animation-play-state: paused; /* Começa pausado */
 }
 
 @keyframes subir {
@@ -315,13 +298,8 @@ p {
         opacity: 1;
     }
     100% {
-        transform: translateY(-400px);
+        transform: translateY(-200px); /* Altura que o balão sobe */
         opacity: 0;
     }
 }
 
-/* Ativa a animação dos balões ao passar o mouse */
-.bilhete:hover + .baloes-container .balao,
-.bilhete:active + .baloes-container .balao {
-    animation-play-state: running;
-}
