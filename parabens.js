@@ -14,14 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     function startBalloons() {
-        baloes.forEach(balao => {
+        baloes.forEach((balao, index) => {
+            balao.style.animationDelay = `${index * 0.5}s`; // Atraso para cada balão
             balao.style.animationPlayState = "running"; // Inicia a animação
+            balao.style.opacity = 1; // Torna o balão visível
         });
     }
 
     function stopBalloons() {
         baloes.forEach(balao => {
             balao.style.animationPlayState = "paused"; // Pausa a animação
+            balao.style.opacity = 0; // Torna o balão invisível
         });
     }
 
