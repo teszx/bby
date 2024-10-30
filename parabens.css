@@ -279,46 +279,34 @@ p {
 }
 
 .baloes-container {
-    position: absolute;
-    bottom: 0; /* Começa na parte inferior do bilhete */
-    width: 100%;
-    pointer-events: none; /* Os balões não devem interferir na interação com o bilhete */
+    position: relative;
+    overflow: hidden; /* Garante que os balões não saiam da área do bilhete */
+    width: 350px;
+    height: 450px;
 }
 
 .balao {
-    width: 60px; /* Largura do balão */
-    height: 80px; /* Altura do balão */
-    background-color: #ff6f61; /* Cor do balão */
-    border-radius: 50%; /* Torna o balão oval */
     position: absolute;
-    animation: subir 5s linear forwards;
-    animation-play-state: paused; /* Começa pausado */
+    bottom: -50px; /* Começa abaixo do bilhete */
+    border-radius: 50%; /* Faz com que os balões sejam ovais */
+    background-color: #FF6F61; /* Cor dos balões */
+    width: 50px; /* Largura dos balões */
+    height: 70px; /* Altura dos balões */
     opacity: 0; /* Começa invisível */
-}
-
-.balao:nth-child(1) {
-    left: 10%; /* Posição do primeiro balão */
-    background-color: #ff6f61; /* Cor do balão 1 */
-}
-
-.balao:nth-child(2) {
-    left: 50%; /* Posição do segundo balão */
-    background-color: #ffcc5c; /* Cor do balão 2 */
-}
-
-.balao:nth-child(3) {
-    left: 80%; /* Posição do terceiro balão */
-    background-color: #6bbf59; /* Cor do balão 3 */
+    animation: subir 4s ease-in forwards;
+    animation-play-state: paused; /* Pausa a animação inicialmente */
 }
 
 @keyframes subir {
-    0% {
-        transform: translateY(0);
-        opacity: 1; /* Torna o balão visível */
+    to {
+        transform: translateY(-400px); /* Altura que o balão vai subir */
+        opacity: 0; /* Torna o balão invisível ao subir */
     }
-    100% {
-        transform: translateY(-200px); /* Altura que o balão sobe */
-        opacity: 0; /* Desaparece ao final da animação */
-    }
+}
+
+/* Exibe os balões apenas na parte interna */
+.dentro .baloes-container .balao {
+    opacity: 1; /* Torna os balões visíveis */
+    animation-play-state: running; /* Inicia a animação */
 }
 
