@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startBalloons() {
         baloes.forEach(balao => {
-            balao.style.animationPlayState = "running";
+            balao.style.animationPlayState = "running"; // Inicia a animação
         });
     }
 
     function stopBalloons() {
         baloes.forEach(balao => {
-            balao.style.animationPlayState = "paused";
+            balao.style.animationPlayState = "paused"; // Pausa a animação
         });
     }
 
