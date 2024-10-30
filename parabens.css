@@ -285,6 +285,7 @@ p {
     transform: translateX(-50%);
     display: flex;
     gap: 20px;
+    z-index: 5;
 }
 
 .balao {
@@ -294,10 +295,9 @@ p {
     border-radius: 50% 50% 0 0;
     position: relative;
     animation: subir 3s linear infinite;
-    animation-play-state: paused; /* Para iniciar a animação apenas ao clicar/passar o mouse */
+    animation-play-state: paused; /* Inicialmente pausado */
 }
 
-/* Fios dos balões */
 .balao::after {
     content: "";
     width: 1px;
@@ -320,7 +320,7 @@ p {
     }
 }
 
-/* Exibição inicial dos balões */
+/* Ativa a animação dos balões ao passar o mouse */
 .bilhete:hover + .baloes-container .balao,
 .bilhete:active + .baloes-container .balao {
     animation-play-state: running;
