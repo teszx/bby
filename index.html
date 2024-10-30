@@ -34,7 +34,6 @@
                     <h2 class="niver">aniversario</h2>
                     <h3 class="amor">amor!</h3>
                 </div>
-                <div class="baloes"></div>
                 <div class="desejos">
                     <p>Meu amor,</p>
                     <p>Mesmo distantes, meu coração bate por ti a cada instante; feliz aniversário, meu amor eterno! 💖</p>
@@ -46,64 +45,84 @@
                 </div>
             </div>
         </div>
+        <div class="baloes"></div> 
     </div>
- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const bilhete = document.querySelector('.bilhete');
-        const dentro = document.querySelector('.dentro');
-        const frente = document.querySelector('.frente');
-        const videoFrame = document.getElementById('videoFrame');
-        const playButton = document.getElementById('playButton');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bilhete = document.querySelector('.bilhete');
+            const dentro = document.querySelector('.dentro');
+            const frente = document.querySelector('.frente');
+            const videoFrame = document.getElementById('videoFrame');
+            const playButton = document.getElementById('playButton');
+            const baloesContainer = document.querySelector('.baloes');
 
-        // Estado inicial: mostra apenas .frente
-        frente.style.display = 'block';
-        dentro.style.display = 'none';
+            // Função para criar e animar balões
+            function criarBaloes() {
+                // Limpa balões anteriores, se houver
+                baloesContainer.innerHTML = '';
 
-        // Detecta se é Safari no iOS
-        const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                // Cria 4 balões e adiciona ao contêiner
+                for (let i = 0; i < 4; i++) {
+                    const balao = document.createElement('div');
+                    balao.classList.add('balao');
+                    baloesContainer.appendChild(balao);
+                }
 
-        if (window.innerWidth > 768) {
-            // No PC, troca automaticamente após 2 segundos
-            setTimeout(() => {
-                frente.style.display = 'none';
-                dentro.style.display = 'block';
-                videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-            }, 2000);
+                // Remove balões após a animação para limpar a tela
+                setTimeout(() => {
+                    baloesContainer.innerHTML = '';
+                }, 3000); // Duração da animação dos balões
+            }
 
-            bilhete.addEventListener('mouseenter', () => {
-                frente.style.display = 'none';
-                dentro.style.display = 'block';
-            });
+            // Evento de clique e de passar o mouse
+            bilhete.addEventListener('mouseenter', criarBaloes);
+            bilhete.addEventListener('click', criarBaloes);
 
-            bilhete.addEventListener('mouseleave', () => {
-                dentro.style.display = 'none';
-                frente.style.display = 'block';
-            });
-        } else {
-            bilhete.addEventListener('click', (event) => {
-                if (frente.style.display === 'block') {
+            // Exibir conteúdo "dentro" ao clicar
+            frente.style.display = 'block';
+            dentro.style.display = 'none';
+
+            const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+            if (window.innerWidth > 768) {
+                setTimeout(() => {
                     frente.style.display = 'none';
                     dentro.style.display = 'block';
-                    // Exibe botão para ativar som em Safari Mobile
-                    if (isSafariMobile) {
-                        playButton.style.display = 'block';
-                    } else {
-                        videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-                    }
-                } else {
+                    videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+                }, 2000);
+
+                bilhete.addEventListener('mouseenter', () => {
+                    frente.style.display = 'none';
+                    dentro.style.display = 'block';
+                });
+
+                bilhete.addEventListener('mouseleave', () => {
                     dentro.style.display = 'none';
                     frente.style.display = 'block';
-                }
-            });
-        }
+                });
+            } else {
+                bilhete.addEventListener('click', (event) => {
+                    if (frente.style.display === 'block') {
+                        frente.style.display = 'none';
+                        dentro.style.display = 'block';
+                        if (isSafariMobile) {
+                            playButton.style.display = 'block';
+                        } else {
+                            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+                        }
+                    } else {
+                        dentro.style.display = 'none';
+                        frente.style.display = 'block';
+                    }
+                });
+            }
 
-        // Ativa o som no Safari Mobile ao clicar no botão
-        playButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Evita fechar o cartão ao clicar no botão
-            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-            playButton.style.display = 'none';
+            playButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+                playButton.style.display = 'none';
+            });
         });
-    });
     </script>
 </body>
 </html>
