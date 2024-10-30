@@ -45,136 +45,15 @@
                 </div>
             </div>
         </div>
-        <div class="baloes"></div> <!-- Contêiner dos balões -->
+        <!-- Balões -->
+        <div class="baloes-container">
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+            <div class="balao"></div>
+        </div>
     </div>
-
-    <style>
-        /* Estilos para os balões e fios */
-        .baloes {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-            pointer-events: none; /* Para que os balões não bloqueiem cliques */
-        }
-
-        .balao {
-            position: absolute;
-            bottom: 0;
-            width: 30px;
-            height: 50px;
-            background-color: #FFD700;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: subir 3s ease-in infinite;
-            opacity: 0;
-        }
-
-        .balao::before {
-            content: "";
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            width: 1px;
-            height: 30px;
-            background-color: #555;
-        }
-
-        @keyframes subir {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-800px);
-                opacity: 0;
-            }
-        }
-
-        /* Balões coloridos */
-        .balao:nth-child(1) { background-color: #ff4d4d; animation-delay: 0s; left: 20%; }
-        .balao:nth-child(2) { background-color: #ff66b2; animation-delay: 0.5s; left: 40%; }
-        .balao:nth-child(3) { background-color: #4da6ff; animation-delay: 1s; left: 60%; }
-        .balao:nth-child(4) { background-color: #66ff66; animation-delay: 1.5s; left: 80%; }
-    </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const bilhete = document.querySelector('.bilhete');
-            const dentro = document.querySelector('.dentro');
-            const frente = document.querySelector('.frente');
-            const videoFrame = document.getElementById('videoFrame');
-            const playButton = document.getElementById('playButton');
-            const baloesContainer = document.querySelector('.baloes');
-
-            // Função para criar e animar balões
-            function criarBaloes() {
-                // Limpa balões anteriores, se houver
-                baloesContainer.innerHTML = '';
-
-                // Cria 4 balões e adiciona ao contêiner
-                for (let i = 0; i < 4; i++) {
-                    const balao = document.createElement('div');
-                    balao.classList.add('balao');
-                    baloesContainer.appendChild(balao);
-                }
-
-                // Remove balões após a animação para limpar a tela
-                setTimeout(() => {
-                    baloesContainer.innerHTML = '';
-                }, 3000); // Duração da animação dos balões
-            }
-
-            // Evento para PC e dispositivos móveis (mouseover e clique)
-            bilhete.addEventListener('mouseenter', criarBaloes);
-            bilhete.addEventListener('click', criarBaloes);
-
-            // Exibir conteúdo "dentro" ao clicar
-            frente.style.display = 'block';
-            dentro.style.display = 'none';
-
-            const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-            if (window.innerWidth > 768) {
-                setTimeout(() => {
-                    frente.style.display = 'none';
-                    dentro.style.display = 'block';
-                    videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-                }, 2000);
-
-                bilhete.addEventListener('mouseenter', () => {
-                    frente.style.display = 'none';
-                    dentro.style.display = 'block';
-                });
-
-                bilhete.addEventListener('mouseleave', () => {
-                    dentro.style.display = 'none';
-                    frente.style.display = 'block';
-                });
-            } else {
-                bilhete.addEventListener('click', (event) => {
-                    if (frente.style.display === 'block') {
-                        frente.style.display = 'none';
-                        dentro.style.display = 'block';
-                        if (isSafariMobile) {
-                            playButton.style.display = 'block';
-                        } else {
-                            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-                        }
-                    } else {
-                        dentro.style.display = 'none';
-                        frente.style.display = 'block';
-                    }
-                });
-            }
-
-            playButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-                playButton.style.display = 'none';
-            });
-        });
-    </script>
+<script src="parabens.js"></script>
 </body>
 </html>
