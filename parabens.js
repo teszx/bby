@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoFrame = document.getElementById('videoFrame');
     const playButton = document.getElementById('playButton');
     const baloesContainer = document.querySelector('.baloes-container');
+    let balloonTimeout;
 
     // Estado inicial: mostra apenas .frente
     frente.style.display = 'block';
@@ -14,35 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     function startBalloons() {
-        setTimeout(() => { // Adiciona o atraso de 22 segundos
-            const balao = document.createElement('div');
-            balao.className = 'balão';
-            baloesContainer.appendChild(balao);
-            balao.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
+        balloonTimeout = setTimeout(() => {
+            for (let i = 0; i < 5; i++) { // Criar múltiplos balões
+                const balao = document.createElement('div');
+                balao.className = 'balão';
+                baloesContainer.appendChild(balao);
+                balao.style.left = `${Math.random() * 100}vw`; // Posição horizontal aleatória
 
-            // Animação do balão subindo
-            balao.animate([
-                { transform: 'translateY(0)' },
-                { transform: 'translateY(-100vh)', opacity: 0 }
-            ], {
-                duration: 5000,
-                easing: 'linear',
-                fill: 'forwards'
-            });
+                // Animação do balão subindo
+                balao.animate([
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(-100vh)', opacity: 0 }
+                ], {
+                    duration: 5000 + Math.random() * 3000, // Tempo de subida variável
+                    easing: 'linear',
+                    fill: 'forwards'
+                });
 
-            balao.addEventListener('animationend', () => {
-                baloesContainer.removeChild(balao);
-            });
+                balao.addEventListener('animationend', () => {
+                    baloesContainer.removeChild(balao);
+                });
+            }
         }, 22000); // 22 segundos de atraso
     }
 
     function stopBalloons() {
+        clearTimeout(balloonTimeout); // Limpa o temporizador para balões
         while (baloesContainer.firstChild) {
             baloesContainer.removeChild(baloesContainer.firstChild);
         }
     }
 
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 768) { // Desktop
         setTimeout(() => {
             frente.style.display = 'none';
             dentro.style.display = 'block';
@@ -60,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             frente.style.display = 'block';
             stopBalloons(); // Para os balões
         });
-    } else {
+    } else { // Mobile
         bilhete.addEventListener('click', (event) => {
             if (frente.style.display === 'block') {
                 frente.style.display = 'none';
