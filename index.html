@@ -45,8 +45,60 @@
                 </div>
             </div>
         </div>
-        <div class="baloes"></div> 
+        <div class="baloes"></div> <!-- Contêiner dos balões -->
     </div>
+
+    <style>
+        /* Estilos para os balões e fios */
+        .baloes {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            pointer-events: none; /* Para que os balões não bloqueiem cliques */
+        }
+
+        .balao {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 50px;
+            background-color: #FFD700;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: subir 3s ease-in infinite;
+            opacity: 0;
+        }
+
+        .balao::before {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            width: 1px;
+            height: 30px;
+            background-color: #555;
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px);
+                opacity: 0;
+            }
+        }
+
+        /* Balões coloridos */
+        .balao:nth-child(1) { background-color: #ff4d4d; animation-delay: 0s; left: 20%; }
+        .balao:nth-child(2) { background-color: #ff66b2; animation-delay: 0.5s; left: 40%; }
+        .balao:nth-child(3) { background-color: #4da6ff; animation-delay: 1s; left: 60%; }
+        .balao:nth-child(4) { background-color: #66ff66; animation-delay: 1.5s; left: 80%; }
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const bilhete = document.querySelector('.bilhete');
@@ -74,7 +126,7 @@
                 }, 3000); // Duração da animação dos balões
             }
 
-            // Evento de clique e de passar o mouse
+            // Evento para PC e dispositivos móveis (mouseover e clique)
             bilhete.addEventListener('mouseenter', criarBaloes);
             bilhete.addEventListener('click', criarBaloes);
 
