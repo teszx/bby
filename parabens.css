@@ -295,7 +295,7 @@ p {
     bottom: 0; /* Posição inicial para subir */
     width: 40px;
     height: 60px;
-    background-color: #FF69B4; /* Cor do balão */
+    background-color: #CC2B52; /* Cor do balão */
     border-radius: 50% 50% 45% 45%; /* Forma oval */
     box-shadow: inset -5px -10px rgba(0, 0, 0, 0.1);
     pointer-events: auto; /* Para permitir interação, se necessário */
