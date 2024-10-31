@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const playButton = document.getElementById('playButton');
     let balloonTimeout;
 
-    // Configuração inicial: mostra apenas a .frente
-    frente.style.display = 'block';
-    dentro.style.display = 'none';
+    // Configuração inicial
+    frente.style.display = 'block'; // Exibe a frente
+    dentro.style.display = 'none'; // Esconde a dentro
 
-    // Função para iniciar os balões com um atraso de 14 segundos
+    // Função para iniciar os balões após 14 segundos
     function startBalloons() {
         balloonTimeout = setTimeout(() => {
-            for (let i = 0; i < 10; i++) { // Mude 5 para 10
+            for (let i = 0; i < 10; i++) {
                 const balao = document.createElement('div');
                 balao.className = 'balao';
                 balao.style.left = `${Math.random() * 100}vw`;
@@ -33,46 +33,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     balao.remove();
                 });
             }
-        }, 14000); // Altere para 14 segundos
+        }, 14000); // Atraso de 14 segundos
     }
 
-    // Função para alternar entre .frente e .dentro
+    // Função para alternar entre frente e dentro
     function toggleBilhete() {
         if (frente.style.display === 'block') {
             frente.style.display = 'none';
             dentro.style.display = 'block';
-            startBalloons();
-            if (playButton) playButton.style.display = 'block'; // Exibe botão no Safari Mobile
+            startBalloons(); // Inicia os balões
+            if (playButton) playButton.style.display = 'block'; // Mostra botão no Safari Mobile
         } else {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-            clearTimeout(balloonTimeout); // Para o timer dos balões ao alternar
+            clearTimeout(balloonTimeout); // Para o timer dos balões
         }
     }
 
     // Detecta se é um dispositivo móvel
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-    // Configuração de eventos para troca entre .frente e .dentro
+    // Configuração de eventos
     if (isMobile) {
         bilhete.addEventListener('click', () => {
             toggleBilhete();
-            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0"); // Ativa som
         });
     } else {
         bilhete.addEventListener('mouseenter', toggleBilhete);
         bilhete.addEventListener('mouseleave', () => {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-            clearTimeout(balloonTimeout); // Para o timer dos balões ao sair
+            clearTimeout(balloonTimeout); // Para o timer dos balões
         });
     }
 
-    // Safari Mobile: Ativa o som ao clicar no botão play
+    // Ativa o som no Safari Mobile
     if (playButton) {
         playButton.addEventListener('click', (event) => {
             event.stopPropagation();
-            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0"); // Ativa som
             playButton.style.display = 'none';
         });
     }
