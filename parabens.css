@@ -1,50 +1,44 @@
 body {
-display: flex;
-align-items: center;
-justify-content: center;
-height:100vh;
-background-color: #FDA4BA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #FDA4BA;
 }
 
-@media(max-width:414px){
-.container{
-padding:10px;			
-}
+@media(max-width: 414px) {
+    .container {
+        padding: 10px;
+    }
 }
 
 .bilhete {
-position: relative;
-width: 350px;
-height:450px;
-cursor: pointer;
-transform-style: preserve-3d;
-transform: perspective(2500px);
-transition: 10s;
+    position: relative;
+    width: 350px;
+    height: 450px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 10s;
 }
 
 .bilhete:hover {
-transform: perspective(2500px) rotate(5deg);
-box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3);
+    transform: perspective(2500px) rotate(5deg);
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, .15), 0 10px 100px rgba(0, 0, 0, 0.3);
 }
 
 .bilhete:hover .frente {
-transform: rotateY(-160deg); 
+    transform: rotateY(-160deg);
 }
 
 .bilhete:hover .texto-frente {
-display: none;
+    display: none;
 }
 
-.bilhete:hover .wrap-deco {
-display: none;
-}
-
-.bilhete:hover .wrap-decoTwo {
-display: none;
-}
-
+.bilhete:hover .wrap-deco,
+.bilhete:hover .wrap-decoTwo,
 .bilhete:hover .prato {
-display: none;
+    display: none;
 }
 
 .frente {
@@ -54,38 +48,40 @@ display: none;
     height: 450px;
     overflow: hidden;
     transform-origin: left;
-    z-index: 5; /* Menor que .dentro */
+    z-index: 5;
 }
 
 .feliz, .amor {
-  position: relative;
-  font-family: didot;
-  text-align: center;
-  backface-visibility: hidden;
-  font-size: 30px; 
+    position: relative;
+    font-family: didot;
+    text-align: center;
+    backface-visibility: hidden;
+    font-size: 30px;
 }
 
 .feliz {
-  top:233px;
+    top: 233px;
 }
 
 .amor {
-  top:173px;
+    top: 173px;
 }
 
 .niver {
-  position: relative;
-  font-family: didot;
-  font-size: 35px;
-  text-align: center;
-  top:200px;
+    position: relative;
+    font-family: didot;
+    font-size: 35px;
+    text-align: center;
+    top: 200px;
 }
 
 .wrap-deco,
 .wrap-decoTwo {
     position: absolute;
-    top: -188px; /* Ajuste conforme necessário */
-    left: -200px; /* Ajuste conforme necessário */
+    top: -50px; /* Ajuste conforme necessário para o alinhamento das tulipas */
+    left: 0; /* Alinhamento horizontal */
+    display: flex; /* Para alinhar as tulipas em linha */
+    justify-content: center; /* Centraliza as tulipas dentro da wrap */
 }
 
 .tulipa {
@@ -108,70 +104,37 @@ display: none;
     transform: translateX(-50%); /* Centraliza o caule em relação à tulipa */
 }
 
-
 .prato {
-  position: absolute;
-  width: 130px;
-  height: 5px;
-  background-color: #873260;
-  left:110px;
-  top:223px;
+    position: absolute;
+    width: 130px;
+    height: 5px;
+    background-color: #873260;
+    left: 110px;
+    top: 223px;
 }
 
 .bolo {
-  position: absolute;
-  overflow: hidden;
-  width:100px;
-  height: 50px;
-  background-color: #fad1bb;
-  border-radius: 10px 10px 0 0;
-  top:-50px;
-  left:15px;
-  box-shadow: inset 0 -15px #EF919F, inset 0 15px #432818;
+    position: absolute;
+    overflow: hidden;
+    width: 100px;
+    height: 50px;
+    background-color: #fad1bb;
+    border-radius: 10px 10px 0 0;
+    top: -50px;
+    left: 15px;
+    box-shadow: inset 0 -15px #EF919F, inset 0 15px #432818;
 }
-
-.bolo:before {
-  content:"";
-  position: absolute;
-  background-color: #432818;
-  width:10px;
-  height:20px;
-  top:5px;
-  border-radius:20px;
-  box-shadow: 10px 5px #fad1bb, 20px 0px #432818, 30px 2px #fad1bb, 40px 5px #432818, 50px 5px #fad1bb, 60px 0px #432818, 70px 5px #fad1bb, 80px 5px #432818, 90px 5px #fad1bb;
-}
-
-.prato:before {
-  content:"";
-  position: absolute;
-  background: repeating-linear-gradient(-45deg, #9b5de5, #9b5de5 3px, #00f5d4 3px, #00f5d4 6px);
-  width:7px;
-  height: 25px;
-  top:-75px;
-  left:61px;
-}
-
-.prato:after {
-  content:"";
-  position: absolute;
-  width:1px;
-  height: 5px;
-  background-color: #333;
-  top:-80px;
-  left:64px;
-}
-
 
 .fogo {
-  position: absolute;
-  background-color: #fb5607;
-  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-  transform: rotate(-45deg);
-  width:15px;
-  height:15px;
-  opacity:0.7;
-  top:-93px;
-  left:57px;
+    position: absolute;
+    background-color: #fb5607;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    transform: rotate(-45deg);
+    width: 15px;
+    height: 15px;
+    opacity: 0.7;
+    top: -93px;
+    left: 57px;
 }
 
 .dentro {
