@@ -48,14 +48,13 @@ display: none;
 }
 
 .frente {
-position: relative;
-background-color: #fff;
-width: 350px;
-height:450px;
-overflow: hidden;
-transform-origin: left;
-box-shadow: inset 100px 20px 100px rgba(0,0,0,.13), 30px 0 50px rgba(0,0,0,0.1);
-transition: .4s;
+    position: relative;
+    background-color: #fff;
+    width: 350px;
+    height: 450px;
+    overflow: hidden;
+    transform-origin: left;
+    z-index: 5; /* Menor que .dentro */
 }
 
 .feliz, .amor {
@@ -218,14 +217,12 @@ transition: .4s;
     background-color: #fff;
     width: 350px;
     height: 450px;
-    z-index: 2; /* Deve ser maior que o z-index da .frente */
+    z-index: 10; /* Maior que .frente */
     left: 0;
     top: 0;
     display: none; /* Inicialmente escondido */
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .texto-dentro {
   position: relative;
@@ -280,7 +277,7 @@ p {
 }
 
 .baloes-container {
-    position: absolute; /* Alterado para absolute para que subam em relação ao bilhete */
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100vw;
