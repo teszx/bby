@@ -278,37 +278,24 @@ p {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Adiciona estilo para os balões */
 .baloes-container {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 50%; /* Centraliza os balões horizontalmente */
-    transform: translateX(-50%); /* Ajusta o centro */
-    pointer-events: none; /* Permite interações com o bilhete mesmo sobre os balões */
-    z-index: 2; /* Garante que os balões fiquem na frente do conteúdo */
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Evita que interfiram com cliques */
+    overflow: hidden;
+    z-index: 10; /* Fica acima do conteúdo do bilhete */
 }
 
 .balao {
     position: absolute;
-    bottom: -50px; /* Começa abaixo do bilhete */
-    border-radius: 50%; /* Faz os balões serem ovais */
-    background-color: #FF6F61; /* Cor dos balões */
-    width: 50px; /* Largura dos balões */
-    height: 70px; /* Altura dos balões */
-    opacity: 0; /* Começa invisível */
-    animation: subir 4s ease-in forwards; /* Animação de subida */
-}
-
-@keyframes subir {
-    to {
-        transform: translateY(-400px); /* Altura que o balão vai subir */
-        opacity: 0; /* Torna o balão invisível ao subir */
-    }
-}
-
-/* Exibe os balões apenas na parte interna */
-.dentro .baloes-container .balao {
-    opacity: 1; /* Torna os balões visíveis */
-    animation-play-state: running; /* Inicia a animação */
+    bottom: -50px; /* Posição inicial fora da tela */
+    width: 40px;
+    height: 60px;
+    background-color: #FF69B4; /* Cor do balão */
+    border-radius: 50% 50% 45% 45%; /* Forma oval */
+    box-shadow: inset -5px -10px rgba(0, 0, 0, 0.1);
 }
 
