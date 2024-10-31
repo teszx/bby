@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const playButton = document.getElementById('playButton');
     let balloonTimeout;
 
+    // Configuração inicial: mostra apenas a .frente
+    frente.style.display = 'block';
+    dentro.style.display = 'none';
+    
     // Função para iniciar os balões com um atraso de 22 segundos
     function startBalloons() {
         balloonTimeout = setTimeout(() => {
@@ -32,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 22000); 
     }
 
-    // Função para trocar entre .frente e .dentro
+    // Função para alternar entre .frente e .dentro
     function toggleBilhete() {
         if (frente.style.display === 'block') {
             frente.style.display = 'none';
@@ -49,25 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Detecta Safari Mobile para tratamento do som
     const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    // Configuração de eventos para desktop e mobile
-    if (window.innerWidth > 768) {
-        frente.style.display = 'block';
-        dentro.style.display = 'none';
-
-        bilhete.addEventListener('mouseenter', () => {
-            toggleBilhete();
-        });
-        bilhete.addEventListener('mouseleave', () => {
-            toggleBilhete();
-        });
-    } else {
-        bilhete.addEventListener('click', (event) => {
-            toggleBilhete();
-            if (!isSafariMobile) {
-                videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-            }
-        });
-    }
+    // Configuração de eventos para troca entre .frente e .dentro
+    bilhete.addEventListener('click', () => {
+        toggleBilhete();
+        if (!isSafariMobile) {
+            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
+        }
+    });
 
     // Safari Mobile: Ativa o som ao clicar no botão play
     if (playButton) {
