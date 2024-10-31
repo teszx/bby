@@ -279,7 +279,7 @@ p {
 }
 
 .baloes-container {
-    position: fixed;
+    position: absolute; /* Alterado para absolute para que subam em relação ao bilhete */
     bottom: 0;
     left: 0;
     width: 100vw;
