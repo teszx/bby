@@ -84,8 +84,8 @@ display: none;
 .wrap-deco,
 .wrap-decoTwo {
     position: absolute;
-    top: -188px;
-    left: -200px;
+    top: -188px; /* Ajuste conforme necessário */
+    left: -200px; /* Ajuste conforme necessário */
 }
 
 .tulipa {
@@ -94,7 +94,6 @@ display: none;
     background-color: #e91e63; /* Cor da tulipa */
     position: relative;
     border-radius: 10px 10px 0 0; /* Bordas arredondadas na parte superior */
-    transform: rotate(180deg); /* Rotaciona a tulipa para ficar de pé */
     margin: 10px; /* Espaço entre as tulipas */
 }
 
