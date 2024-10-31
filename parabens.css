@@ -214,16 +214,17 @@ transition: .4s;
 }
 
 .dentro {
-position: absolute;
+    position: absolute;
     background-color: #fff;
     width: 350px;
     height: 450px;
-    z-index: 1; /* Alterado para um valor positivo */
+    z-index: 2; /* Deve ser maior que o z-index da .frente */
     left: 0;
     top: 0;
     display: none; /* Inicialmente escondido */
-    box-shadow: inset 100px 20px 100px rgba(0,0,0,0.2);
+    box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
+
 
 
 .texto-dentro {
@@ -297,5 +298,7 @@ p {
     background-color: #FF69B4; /* Cor do balão */
     border-radius: 50% 50% 45% 45%; /* Forma oval */
     box-shadow: inset -5px -10px rgba(0, 0, 0, 0.1);
+    pointer-events: auto; /* Para permitir interação, se necessário */
 }
+
 
