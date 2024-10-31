@@ -11,30 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
     frente.style.display = 'block';
     dentro.style.display = 'none';
 
-function startBalloons() {
-    balloonTimeout = setTimeout(() => {
-        for (let i = 0; i < 5; i++) {
-            const balao = document.createElement('div');
-            balao.className = 'balao';
-            const randomLeft = Math.random() * 100; // Posição aleatória em % da largura da tela
-            balao.style.left = `${randomLeft}vw`; // Largura em porcentagem
-            baloesContainer.appendChild(balao);
+    // Função para iniciar os balões com um atraso de 14 segundos
+    function startBalloons() {
+        balloonTimeout = setTimeout(() => {
+            for (let i = 0; i < 10; i++) { // Mude 5 para 10
+                const balao = document.createElement('div');
+                balao.className = 'balao';
+                balao.style.left = `${Math.random() * 100}vw`;
+                baloesContainer.appendChild(balao);
 
-            balao.animate([
-                { transform: 'translateY(100vh)', opacity: 1 },
-                { transform: 'translateY(-100vh)', opacity: 0 }
-            ], {
-                duration: 8000 + Math.random() * 2000,
-                easing: 'ease-out',
-                fill: 'forwards'
-            });
+                balao.animate([
+                    { transform: 'translateY(100vh)', opacity: 1 },
+                    { transform: 'translateY(-100vh)', opacity: 0 }
+                ], {
+                    duration: 8000 + Math.random() * 2000,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
 
-            balao.addEventListener('animationend', () => {
-                balao.remove();
-            });
-        }
-    }, 14000); 
-}
+                balao.addEventListener('animationend', () => {
+                    balao.remove();
+                });
+            }
+        }, 14000); // Altere para 14 segundos
+    }
 
     // Função para alternar entre .frente e .dentro
     function toggleBilhete() {
@@ -50,16 +50,23 @@ function startBalloons() {
         }
     }
 
-    // Detecta Safari Mobile para tratamento do som
-    const isSafariMobile = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Detecta se é um dispositivo móvel
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
     // Configuração de eventos para troca entre .frente e .dentro
-    bilhete.addEventListener('click', () => {
-        toggleBilhete();
-        if (!isSafariMobile) {
+    if (isMobile) {
+        bilhete.addEventListener('click', () => {
+            toggleBilhete();
             videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0");
-        }
-    });
+        });
+    } else {
+        bilhete.addEventListener('mouseenter', toggleBilhete);
+        bilhete.addEventListener('mouseleave', () => {
+            dentro.style.display = 'none';
+            frente.style.display = 'block';
+            clearTimeout(balloonTimeout); // Para o timer dos balões ao sair
+        });
+    }
 
     // Safari Mobile: Ativa o som ao clicar no botão play
     if (playButton) {
