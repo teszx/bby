@@ -11,30 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
     frente.style.display = 'block';
     dentro.style.display = 'none';
 
-    // Função para iniciar os balões com um atraso de 22 segundos
-    function startBalloons() {
-        balloonTimeout = setTimeout(() => {
-            for (let i = 0; i < 5; i++) {
-                const balao = document.createElement('div');
-                balao.className = 'balao';
-                balao.style.left = `${Math.random() * 100}vw`;
-                baloesContainer.appendChild(balao);
+function startBalloons() {
+    balloonTimeout = setTimeout(() => {
+        for (let i = 0; i < 5; i++) {
+            const balao = document.createElement('div');
+            balao.className = 'balao';
+            const randomLeft = Math.random() * 100; // Posição aleatória em % da largura da tela
+            balao.style.left = `${randomLeft}vw`; // Largura em porcentagem
+            baloesContainer.appendChild(balao);
 
-                balao.animate([
-                    { transform: 'translateY(100vh)', opacity: 1 },
-                    { transform: 'translateY(-100vh)', opacity: 0 }
-                ], {
-                    duration: 8000 + Math.random() * 2000,
-                    easing: 'ease-out',
-                    fill: 'forwards'
-                });
+            balao.animate([
+                { transform: 'translateY(100vh)', opacity: 1 },
+                { transform: 'translateY(-100vh)', opacity: 0 }
+            ], {
+                duration: 8000 + Math.random() * 2000,
+                easing: 'ease-out',
+                fill: 'forwards'
+            });
 
-                balao.addEventListener('animationend', () => {
-                    balao.remove();
-                });
-            }
-        }, 22000); 
-    }
+            balao.addEventListener('animationend', () => {
+                balao.remove();
+            });
+        }
+    }, 14000); 
+}
 
     // Função para alternar entre .frente e .dentro
     function toggleBilhete() {
