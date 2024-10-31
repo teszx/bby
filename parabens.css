@@ -81,71 +81,34 @@ display: none;
   top:200px;
 }
 
-.wrap-deco {
-  position: absolute;
-  top:-188px;
-  left:-200px;
-}
-
-.decorations {
-  position: absolute;
-  width: 400px;
-  height: 300px;
-  border: 2.2px solid #333;
-  border-radius: 60%;
-}
-
-.decorations:before, .decorations:after, .decorationsTwo:before, .decorationsTwo:after, .decorationsThree:before, .decorationsThree:after {
-  content:"";
-  position: absolute;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  width:0;
-  height:0;
-}
-
-.decorations:before {
-  border-top: 30px solid #e085a4;
-  top:297px;
-  left:210px;
-  transform: rotate(-5deg);
-}
-
-.decorations:after{
-  border-top: 30px solid #e085a4;
-  top:288px;
-  left:260px;
-  transform: rotate(-17deg);
-}
-
-.decorationsTwo:before {
-  border-top: 30px solid #e085a4;
-  top:268px;
-  left:315px;
-  transform: rotate(-30deg);
-}
-
-.decorationsTwo:after, .decorationsThree:after {
-  border-top: 30px solid #e085a4;
-  top:218px;
-  left:355px;
-  transform: rotate(-90deg);
-}
-
+.wrap-deco,
 .wrap-decoTwo {
-  transform: scaleX(-1);
-  position: absolute;
-  top:-188px;
-  left:550px; 
+    position: absolute;
+    top: -188px;
+    left: -200px;
 }
 
-.decorationsThree:before {
-  border-top: 30px solid #e085a4;
-  top:268px;
-  left:315px;
-  transform: rotate(-30deg);
-  
+.tulipa {
+    width: 30px; /* Largura da tulipa */
+    height: 50px; /* Altura da tulipa */
+    background-color: #e91e63; /* Cor da tulipa */
+    position: relative;
+    border-radius: 10px 10px 0 0; /* Bordas arredondadas na parte superior */
+    transform: rotate(180deg); /* Rotaciona a tulipa para ficar de pé */
+    margin: 10px; /* Espaço entre as tulipas */
 }
+
+.tulipa::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Ajusta a posição do caule */
+    left: 50%;
+    width: 5px; /* Largura do caule */
+    height: 20px; /* Altura do caule */
+    background-color: #3c763d; /* Cor do caule */
+    transform: translateX(-50%); /* Centraliza o caule em relação à tulipa */
+}
+
 
 .prato {
   position: absolute;
