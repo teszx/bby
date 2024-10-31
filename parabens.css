@@ -245,10 +245,6 @@ p {
   margin-left:160px;
 }
 
-.dentro, .frente {
-    display: none;
-}
-
 .video-container {
     position: relative;
     width: 100%;
