@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configuração inicial: mostra apenas a .frente
     frente.style.display = 'block';
     dentro.style.display = 'none';
-    
+
     // Função para iniciar os balões com um atraso de 22 segundos
     function startBalloons() {
         balloonTimeout = setTimeout(() => {
