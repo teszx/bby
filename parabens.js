@@ -6,25 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
     let balloonTimeout;
 
     function startBalloons() {
+        // Garante que os balões começam após o atraso desejado
         balloonTimeout = setTimeout(() => {
             for (let i = 0; i < 5; i++) { // Número de balões
                 const balao = document.createElement('div');
                 balao.className = 'balao';
-                baloesContainer.appendChild(balao);
                 balao.style.left = `${Math.random() * 100}vw`;
+                baloesContainer.appendChild(balao);
 
-                // Animação de subida
+                // Configura a animação para cada balão
                 balao.animate([
-                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(100vh)', opacity: 1 },
                     { transform: 'translateY(-100vh)', opacity: 0 }
                 ], {
-                    duration: 5000 + Math.random() * 3000,
-                    easing: 'linear',
+                    duration: 8000 + Math.random() * 2000,
+                    easing: 'ease-out',
                     fill: 'forwards'
                 });
 
+                // Remove o balão após a animação
                 balao.addEventListener('animationend', () => {
-                    baloesContainer.removeChild(balao);
+                    balao.remove();
                 });
             }
         }, 22000); // 22 segundos de atraso
@@ -45,10 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
         bilhete.addEventListener('mouseleave', () => {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-            clearTimeout(balloonTimeout);
+            clearTimeout(balloonTimeout); // Interrompe o timer se o mouse sair
         });
     } else {
-        bilhete.addEventListener('click', (event) => {
+        bilhete.addEventListener('click', () => {
             if (frente.style.display === 'block') {
                 frente.style.display = 'none';
                 dentro.style.display = 'block';
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 dentro.style.display = 'none';
                 frente.style.display = 'block';
-                clearTimeout(balloonTimeout);
+                clearTimeout(balloonTimeout); // Interrompe o timer em dispositivos móveis
             }
         });
     }
