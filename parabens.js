@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => { 
+document.addEventListener('DOMContentLoaded', () => {
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
@@ -8,16 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     dentro.appendChild(confetesContainer); 
     const videoPlayer = document.getElementById('videoPlayer');
     let balloonTimeout;
-    let confettiPlayed = false;
-    let balloonsPlayed = false;
+    let confettiPlayed = false; 
 
     frente.style.display = 'block';
     dentro.style.display = 'none';
 
-   
     function startBalloons() {
-        if (balloonsPlayed) return;  
-        balloonsPlayed = true;  
         balloonTimeout = setTimeout(() => {
             for (let i = 0; i < 10; i++) {
                 const balao = document.createElement('div');
@@ -38,12 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     balao.remove();
                 });
             }
-        }, 14000);  
+        }, 14000);
     }
 
-   
     function startConfetti() {
-        if (confettiPlayed) return;  
+        if (confettiPlayed) return; 
         confettiPlayed = true;
 
         for (let i = 0; i < 50; i++) {
@@ -59,49 +54,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    
     function toggleBilhete() {
         if (frente.style.display === 'block') {
             frente.style.display = 'none';
             dentro.style.display = 'block';
-
-            startBalloons();  
-            setTimeout(startConfetti, 15000);  
+            startBalloons();
 
             
-            videoPlayer.muted = false;  
-            videoPlayer.play().catch(error => {
-                console.log("Autoplay falhou:", error);
-                videoPlayer.muted = true; 
-                videoPlayer.play();
-            });
+            setTimeout(startConfetti, 15000);
 
+            
+            videoPlayer.play();
         } else {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-
-            baloesContainer.innerHTML = '';
-            confetesContainer.innerHTML = '';
-
-            clearTimeout(balloonTimeout);  
-            videoPlayer.pause();  
+            clearTimeout(balloonTimeout);
+            videoPlayer.pause();
         }
     }
 
-    
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-        bilhete.addEventListener('click', toggleBilhete);  
+        bilhete.addEventListener('click', toggleBilhete);
     } else {
-        bilhete.addEventListener('mouseenter', toggleBilhete); 
+        bilhete.addEventListener('mouseenter', toggleBilhete);
         bilhete.addEventListener('mouseleave', () => {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-
-           
-            baloesContainer.innerHTML = '';
-            confetesContainer.innerHTML = '';
             clearTimeout(balloonTimeout);
             videoPlayer.pause();
         });
