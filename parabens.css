@@ -13,14 +13,18 @@ padding:10px;
 }
 
 .bilhete {
-position: relative;
-width: 350px;
-height:450px;
-cursor: pointer;
-transform-style: preserve-3d;
-transform: perspective(2500px);
-transition: 10s;
+    position: relative;
+    width: 350px;
+    height: 450px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: perspective(2500px);
+    transition: 10s;
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    justify-content: space-between; /* Espaçamento entre os elementos */
 }
+
 
 .bilhete:hover {
 transform: perspective(2500px) rotate(5deg);
@@ -54,7 +58,7 @@ display: none;
     height: 450px;
     overflow: hidden;
     transform-origin: left;
-    z-index: 5; /* Menor que .dentro */
+    z-index: 5; 
 }
 
 .feliz, .amor {
@@ -83,7 +87,7 @@ display: none;
 
 .wrap-deco {
   position: absolute;
-  top:-188px;
+  top:-238px;
   left:-200px;
 }
 
@@ -128,14 +132,14 @@ display: none;
 .decorationsTwo:after, .decorationsThree:after {
   border-top: 30px solid #e085a4;
   top:218px;
-  left:355px;
+  left:135px;
   transform: rotate(-90deg);
 }
 
 .wrap-decoTwo {
   transform: scaleX(-1);
   position: absolute;
-  top:-188px;
+  top:-238px;
   left:550px; 
 }
 
@@ -217,10 +221,10 @@ display: none;
     background-color: #fff;
     width: 350px;
     height: 450px;
-    z-index: 10; /* Maior que .frente */
+    z-index: 10; 
     left: 0;
     top: 0;
-    display: none; /* Inicialmente escondido */
+    display: none; 
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
 
@@ -248,28 +252,8 @@ p {
 .video-container {
     position: relative;
     width: 100%;
-    max-width: 220px; /* Ajuste conforme necessário */
+    max-width: 220px;
     margin: 0 auto;
-}
-
-#playButton {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    display: none; /* Exibe apenas em dispositivos Safari Mobile */
-    z-index: 1; /* Garante que fique acima do iframe */
-}
-
-#playButton:hover {
-    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .baloes-container {
@@ -278,18 +262,71 @@ p {
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none; /* Evita que interfiram com cliques */
+    pointer-events: none;
     overflow: hidden;
-    z-index: 10; /* Fica acima do conteúdo do bilhete */
+    z-index: 10;
 }
 
 .balao {
     position: absolute;
-    bottom: 0; /* Posição inicial para subir */
+    bottom: 0; 
     width: 40px;
     height: 60px;
-    background-color: #CC2B52; /* Cor do balão */
-    border-radius: 50% 50% 45% 45%; /* Forma oval */
+    background-color: #CC2B52; 
+    border-radius: 50% 50% 45% 45%; 
     box-shadow: inset -5px -10px rgba(0, 0, 0, 0.1);
-    pointer-events: auto; /* Para permitir interação, se necessário */
+    pointer-events: auto; 
+}
+.confetes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10; 
+}
+
+.confete {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #FFD700; 
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall 3s linear infinite;
+}
+
+.confete:nth-child(3n) { background-color: #FF6347; }
+.confete:nth-child(4n) { background-color: #32CD32; }
+.confete:nth-child(5n) { background-color: #1E90FF; }
+
+@keyframes fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(720deg); }
+}
+
+.redirect-button {
+    background-color: #FF61A6;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 5px 10px; /* Botão pequeno */
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 5px;
+    margin-right:0;
+    position: absolute;
+    top: 270px; 
+    left: 30px;
+    transform: translateX(-50%);  
+}
+
+
+.redirect-button:hover {
+    background-color: #E04A90;
+    transition: background-color 0.3s ease;
 }
