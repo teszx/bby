@@ -21,8 +21,8 @@ padding:10px;
     transform: perspective(2500px);
     transition: 10s;
     display: flex;
-    flex-direction: column; /* Organiza os elementos em coluna */
-    justify-content: space-between; /* Espaçamento entre os elementos */
+    flex-direction: column; 
+    justify-content: space-between;
 }
 
 
@@ -234,6 +234,7 @@ display: none;
   transform: scale(0.7);
 }
 
+
 .desejos {
   position: relative;
   top:-100px;
@@ -259,13 +260,15 @@ p {
 .baloes-container {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 100vw; 
+    height: 100vh; 
     pointer-events: none;
     overflow: hidden;
     z-index: 10;
 }
+
 
 .balao {
     position: absolute;
@@ -277,16 +280,30 @@ p {
     box-shadow: inset -5px -10px rgba(0, 0, 0, 0.1);
     pointer-events: auto; 
 }
+
+.balao::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background-color: #A9A9A9; /* Cor da cauda */
+    bottom: -60px; /* Posiciona a cauda abaixo do balão */
+    left: 50%; /* Centraliza a cauda */
+    transform: translateX(-50%);
+}
+
 .confetes-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100vw; 
+    height: 100vh; 
     pointer-events: none;
     overflow: hidden;
-    z-index: 10; 
+    z-index: 10;
 }
+
 
 .confete {
     position: absolute;
@@ -307,24 +324,36 @@ p {
     100% { transform: translateY(100vh) rotate(720deg); }
 }
 
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px #FF61A6, 0 0 10px #FF61A6;
+    }
+    50% {
+        box-shadow: 0 0 20px #FF61A6, 0 0 40px #E04A90;
+    }
+    100% {
+        box-shadow: 0 0 5px #FF61A6, 0 0 10px #FF61A6;
+    }
+}
+
 .redirect-button {
     background-color: #FF61A6;
     color: white;
     font-family: 'Arial', sans-serif;
-    padding: 5px 10px; /* Botão pequeno */
+    padding: 5px 10px;
     border: none;
     border-radius: 5px;
     font-size: 12px;
     cursor: pointer;
     text-align: center;
     margin-top: 5px;
-    margin-right:0;
+    margin-right: 0;
     position: absolute;
-    top: 270px; 
+    top: 270px;
     left: 30px;
-    transform: translateX(-50%);  
+    transform: translateX(-50%);
+    animation: glow 1.5s infinite; 
 }
-
 
 .redirect-button:hover {
     background-color: #E04A90;
