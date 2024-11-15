@@ -1,18 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
     const baloesContainer = document.querySelector('.baloes-container');
-    const videoFrame = document.getElementById('videoFrame');
-    const playButton = document.getElementById('playButton');
+    const confetesContainer = document.createElement('div');
+    confetesContainer.className = 'confetes-container';
+    dentro.appendChild(confetesContainer); 
+    const videoPlayer = document.getElementById('videoPlayer');
     let balloonTimeout;
+    let confettiPlayed = false;
+    let balloonsPlayed = false;
 
-    // Configuração inicial
-    frente.style.display = 'block'; // Exibe a frente
-    dentro.style.display = 'none'; // Esconde a dentro
+    frente.style.display = 'block';
+    dentro.style.display = 'none';
 
-    // Função para iniciar os balões após 14 segundos
+   
     function startBalloons() {
+        if (balloonsPlayed) return;  
+        balloonsPlayed = true;  
         balloonTimeout = setTimeout(() => {
             for (let i = 0; i < 10; i++) {
                 const balao = document.createElement('div');
@@ -33,47 +38,72 @@ document.addEventListener('DOMContentLoaded', () => {
                     balao.remove();
                 });
             }
-        }, 14000); // Atraso de 14 segundos
+        }, 14000);  
     }
 
-    // Função para alternar entre frente e dentro
+   
+    function startConfetti() {
+        if (confettiPlayed) return;  
+        confettiPlayed = true;
+
+        for (let i = 0; i < 50; i++) {
+            const confete = document.createElement('div');
+            confete.className = 'confete';
+            confete.style.left = `${Math.random() * 100}vw`;
+            confete.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            confetesContainer.appendChild(confete);
+
+            confete.addEventListener('animationend', () => {
+                confete.remove();
+            });
+        }
+    }
+
+    
     function toggleBilhete() {
         if (frente.style.display === 'block') {
             frente.style.display = 'none';
             dentro.style.display = 'block';
-            startBalloons(); // Inicia os balões
-            if (playButton) playButton.style.display = 'block'; // Mostra botão no Safari Mobile
+
+            startBalloons();  
+            setTimeout(startConfetti, 15000);  
+
+            
+            videoPlayer.muted = false;  
+            videoPlayer.play().catch(error => {
+                console.log("Autoplay falhou:", error);
+                videoPlayer.muted = true; 
+                videoPlayer.play();
+            });
+
         } else {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-            clearTimeout(balloonTimeout); // Para o timer dos balões
+
+            baloesContainer.innerHTML = '';
+            confetesContainer.innerHTML = '';
+
+            clearTimeout(balloonTimeout);  
+            videoPlayer.pause();  
         }
     }
 
-    // Detecta se é um dispositivo móvel
+    
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-    // Configuração de eventos
     if (isMobile) {
-        bilhete.addEventListener('click', () => {
-            toggleBilhete();
-            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0"); // Ativa som
-        });
+        bilhete.addEventListener('click', toggleBilhete);  
     } else {
-        bilhete.addEventListener('mouseenter', toggleBilhete);
+        bilhete.addEventListener('mouseenter', toggleBilhete); 
         bilhete.addEventListener('mouseleave', () => {
             dentro.style.display = 'none';
             frente.style.display = 'block';
-            clearTimeout(balloonTimeout); // Para o timer dos balões
-        });
-    }
 
-    // Ativa o som no Safari Mobile
-    if (playButton) {
-        playButton.addEventListener('click', (event) => {
-            event.stopPropagation();
-            videoFrame.src = videoFrame.src.replace("&mute=1", "&mute=0"); // Ativa som
-            playButton.style.display = 'none';
+           
+            baloesContainer.innerHTML = '';
+            confetesContainer.innerHTML = '';
+            clearTimeout(balloonTimeout);
+            videoPlayer.pause();
         });
     }
 });
