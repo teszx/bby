@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let confettiPlayed = false;
     let balloonsPlayed = false;
 
-    
+
     let isOpen = false;
 
 
@@ -98,11 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
             openBilhete();
         }
     }
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+
+    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
     if (isMobile) {
         bilhete.addEventListener('click', toggleBilhete);
     } else {
+    
         bilhete.addEventListener('mouseenter', openBilhete);
         bilhete.addEventListener('mouseleave', closeBilhete);
     }
