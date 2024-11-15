@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let confettiPlayed = false;
     let balloonsPlayed = false;
 
+    
     let isOpen = false;
 
 
@@ -61,50 +62,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openBilhete() {
-        if (!isOpen) {
-            frente.style.display = 'none';
-            dentro.style.display = 'block';
+        frente.style.display = 'none';
+        dentro.style.display = 'block';
 
-            startBalloons();  
-            setTimeout(startConfetti, 15000);  
+        startBalloons();  
+        setTimeout(startConfetti, 15000);  
 
-            videoPlayer.muted = false;  
-            videoPlayer.play().catch(error => {
-                console.log("Autoplay falhou:", error);
-                videoPlayer.muted = true; 
-                videoPlayer.play();
-            });
+        videoPlayer.muted = false;  
+        videoPlayer.play().catch(error => {
+            console.log("Autoplay falhou:", error);
+            videoPlayer.muted = true; 
+            videoPlayer.play();
+        });
 
-            isOpen = true;
-        }
+        isOpen = true;
     }
 
     function closeBilhete() {
-        if (isOpen) {
-            dentro.style.display = 'none';
-            frente.style.display = 'block';
+        dentro.style.display = 'none';
+        frente.style.display = 'block';
 
-            baloesContainer.innerHTML = '';
-            confetesContainer.innerHTML = '';
+        baloesContainer.innerHTML = '';
+        confetesContainer.innerHTML = '';
 
-            clearTimeout(balloonTimeout);  
-            videoPlayer.pause();  
+        clearTimeout(balloonTimeout);  
+        videoPlayer.pause();  
 
-            isOpen = false;
-        }
+        isOpen = false;
     }
 
-
+    function toggleBilhete() {
+        if (isOpen) {
+            closeBilhete();
+        } else {
+            openBilhete();
+        }
+    }
     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-    
-        bilhete.addEventListener('click', () => {
-            if (isOpen) closeBilhete();
-            else openBilhete();
-        });
+        bilhete.addEventListener('click', toggleBilhete);
     } else {
-
         bilhete.addEventListener('mouseenter', openBilhete);
         bilhete.addEventListener('mouseleave', closeBilhete);
     }
