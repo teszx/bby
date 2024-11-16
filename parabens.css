@@ -373,3 +373,11 @@ p {
     background-color: #E04A90;
     transition: background-color 0.3s ease;
 }
+
+.escondido {
+    visibility: hidden;
+    opacity: 0;
+    transform: rotateY(180deg); 
+    transition: visibility 0s 0.5s, opacity 0.5s ease-in-out;
+}
+
