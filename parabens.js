@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let balloonTimeout;
     let confettiPlayed = false;
     let balloonsPlayed = false;
-
     
     let isOpen = false;
 
@@ -100,17 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    
-    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    // Detecta dispositivo móvel
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-        console.log("Configuração para celular ativada");
-        
+        // No celular, usa click para alternar
         bilhete.addEventListener('click', toggleBilhete);
     } else {
-        console.log("Configuração para PC ativada");
-        
-        bilhete.addEventListener('mouseenter', openBilhete);
-        bilhete.addEventListener('mouseleave', closeBilhete);
+        // No desktop, usa mouseenter/mouseleave para alternar
+        bilhete.addEventListener('mouseenter', toggleBilhete);  
+        bilhete.addEventListener('mouseleave', () => {
+            if (isOpen) {
+                closeBilhete();
+            }
+        });
     }
 });
