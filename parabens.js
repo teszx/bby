@@ -109,3 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bilhete.addEventListener('mouseleave', closeBilhete);
     }
 });
+
+    document.querySelector('.bilhete').addEventListener('click', function() {
+    document.querySelector('.frente').classList.toggle('escondido');
+    document.querySelector('.dentro').classList.toggle('escondido');
+});
