@@ -1,18 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { 
     const bilhete = document.querySelector('.bilhete');
     const dentro = document.querySelector('.dentro');
     const frente = document.querySelector('.frente');
     const baloesContainer = document.querySelector('.baloes-container');
     const confetesContainer = document.createElement('div');
     confetesContainer.className = 'confetes-container';
-    dentro.appendChild(confetesContainer);
+    dentro.appendChild(confetesContainer); 
     const videoPlayer = document.getElementById('videoPlayer');
     let balloonTimeout;
     let confettiPlayed = false;
     let balloonsPlayed = false;
     
     let isOpen = false;
-    
+
     frente.style.display = 'block';
     dentro.style.display = 'none';
 
@@ -103,24 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-        let toggleState = false; 
-
-        bilhete.addEventListener('click', () => {
-            if (!toggleState) {
-                openBilhete();
-                toggleState = true; 
-            } else {
-                closeBilhete();
-                toggleState = false; 
-            }
-        });
-    } else {
         
-        bilhete.addEventListener('mouseenter', () => {
-            openBilhete();
-        });
+        bilhete.addEventListener('click', toggleBilhete);
+    } else {
+    
+        bilhete.addEventListener('mouseenter', toggleBilhete);  
         bilhete.addEventListener('mouseleave', () => {
-            closeBilhete();
+            if (isOpen) {
+                closeBilhete();
+            }
         });
     }
 });
