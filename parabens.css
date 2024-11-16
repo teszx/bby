@@ -25,14 +25,26 @@ padding:10px;
     justify-content: space-between;
 }
 
+.frente, .dentro {
+    backface-visibility: hidden;
+}
 
 .bilhete:hover {
 transform: perspective(2500px) rotate(5deg);
 box-shadow: inset 100px 20px 100px rgba(0,0,0,.15), 0 10px 100px rgba(0,0,0,0.3);
+    
 }
 
 .bilhete:hover .frente {
 transform: rotateY(-160deg); 
+visibility: hidden;
+opacity: 0;
+transition: visibility 0s 0.5s, opacity 0.5s ease-in-out;
+}
+
+.bilhete:hover .dentro {
+    visibility: visible;
+    opacity: 1;
 }
 
 .bilhete:hover .texto-frente {
@@ -217,6 +229,7 @@ display: none;
 }
 
 .dentro {
+    visibility: hidden;
     position: absolute;
     background-color: #fff;
     width: 350px;
@@ -224,7 +237,8 @@ display: none;
     z-index: 10; 
     left: 0;
     top: 0;
-    display: none; 
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease-in-out;
     box-shadow: inset 100px 20px 100px rgba(0, 0, 0, 0.2);
 }
 
