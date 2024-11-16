@@ -10,12 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let balloonTimeout;
     let confettiPlayed = false;
     let balloonsPlayed = false;
-    
     let isOpen = false;
 
+    
     frente.style.display = 'block';
     dentro.style.display = 'none';
 
+    
     function startBalloons() {
         if (balloonsPlayed) return;  
         balloonsPlayed = true;  
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 14000);  
     }
 
+
     function startConfetti() {
         if (confettiPlayed) return;  
         confettiPlayed = true;
@@ -59,10 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    
     function openBilhete() {
         console.log("Abrindo bilhete...");
-        frente.style.display = 'none';
-        dentro.style.display = 'block';
+        bilhete.classList.add('open'); 
 
         startBalloons();  
         setTimeout(startConfetti, 15000);  
@@ -77,10 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
         isOpen = true;
     }
 
+    
     function closeBilhete() {
         console.log("Fechando bilhete...");
-        dentro.style.display = 'none';
-        frente.style.display = 'block';
+        bilhete.classList.remove('open'); 
 
         baloesContainer.innerHTML = '';
         confetesContainer.innerHTML = '';
@@ -88,9 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(balloonTimeout);  
         videoPlayer.pause();  
 
+        
+        confettiPlayed = false;
+        balloonsPlayed = false;
+
         isOpen = false;
     }
 
+    
     function toggleBilhete() {
         if (isOpen) {
             closeBilhete();
@@ -106,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         bilhete.addEventListener('click', toggleBilhete);
     } else {
-    
-        bilhete.addEventListener('mouseenter', toggleBilhete);  
+        
+        bilhete.addEventListener('mouseenter', () => {
+            if (!isOpen) openBilhete();
+        });
         bilhete.addEventListener('mouseleave', () => {
-            if (isOpen) {
-                closeBilhete();
-            }
+            if (isOpen) closeBilhete();
         });
     }
 });
