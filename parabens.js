@@ -97,6 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             openBilhete();
         }
+        console.log("Toggle chamado no celular");
+
     }
 
 
