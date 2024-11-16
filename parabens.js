@@ -11,9 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let confettiPlayed = false;
     let balloonsPlayed = false;
 
-
+    
     let isOpen = false;
-
 
     frente.style.display = 'block';
     dentro.style.display = 'none';
@@ -62,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openBilhete() {
+        console.log("Abrindo bilhete...");
         frente.style.display = 'none';
         dentro.style.display = 'block';
 
@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeBilhete() {
+        console.log("Fechando bilhete...");
         dentro.style.display = 'none';
         frente.style.display = 'block';
 
@@ -97,17 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             openBilhete();
         }
-        console.log("Toggle chamado no celular");
-
     }
 
-
+    
     const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
     if (isMobile) {
+        console.log("Configuração para celular ativada");
+        
         bilhete.addEventListener('click', toggleBilhete);
     } else {
-    
+        console.log("Configuração para PC ativada");
+        
         bilhete.addEventListener('mouseenter', openBilhete);
         bilhete.addEventListener('mouseleave', closeBilhete);
     }
