@@ -91,27 +91,21 @@ document.addEventListener('DOMContentLoaded', () => {
         isOpen = false;
     }
 
-    function toggleBilhete() {
-        if (isOpen) {
-            closeBilhete();
-        } else {
-            openBilhete();
-        }
-    }
-
-    // Detecta dispositivo móvel
+    
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
-        // No celular, usa click para alternar
-        bilhete.addEventListener('click', toggleBilhete);
-    } else {
-        // No desktop, usa mouseenter/mouseleave para alternar
-        bilhete.addEventListener('mouseenter', toggleBilhete);  
-        bilhete.addEventListener('mouseleave', () => {
+        
+        bilhete.addEventListener('click', () => {
             if (isOpen) {
                 closeBilhete();
+            } else {
+                openBilhete();
             }
         });
+    } else {
+        
+        bilhete.addEventListener('mouseenter', openBilhete);
+        bilhete.addEventListener('mouseleave', closeBilhete);
     }
 });
